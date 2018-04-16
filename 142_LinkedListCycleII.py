@@ -6,7 +6,7 @@ class ListNode(object):
 
 
 class Solution(object):
-    '''
+    
     # a solution with using extra space  79s
     def hasCycle(self, head): #
         """
@@ -23,25 +23,7 @@ class Solution(object):
             flag.add(head)
             head = head.next
         return None
-        '''
-
-    def hasCycle(self, head):  # without using extra space(90s)
-        """
-        :type head: ListNode
-        :rtype: bool
-        """
-        fast = slow = begin = head
-        while fast and fast.next:
-            fast = fast.next.next
-            slow = slow.next
-            if slow == fast:
-                while begin!= slow:
-                    slow = slow.next
-                    begin = begin.next
-                return begin
-
-        return None
-
+        
 
 
 if __name__ == '__main__':
