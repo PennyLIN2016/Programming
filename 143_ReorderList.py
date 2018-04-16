@@ -6,7 +6,7 @@ class ListNode(object):
 
 
 class Solution(object):
-    '''
+    
     # my solution: 11/13 Time Limit Exceed
     def reorderList(self, head):
         """
@@ -30,51 +30,7 @@ class Solution(object):
             tail.next = p.next
             p.next = tail
             p = tail.next
-    '''
-    # a good solution --100s
-    def reorderList(self, head):
-        """
-        :type head: ListNode
-        :rtype: void Do not return anything, modify head in-place instead.
-        """
 
-        def reverse(root):
-            pre = None
-            cur = root
-            while cur:
-                next = cur.next
-                cur.next = pre
-                pre = cur
-                cur = next
-            return pre
-
-        if not head or not head.next:
-            return
-        slow = fast = head
-        pre = None
-        while fast and fast.next:
-            pre = slow
-            slow = slow.next
-            fast = fast.next.next
-        if pre:
-            pre.next = None
-        # divide into two lists, one is the left half and the other is the right half. reverse the right half.
-        newHead = reverse(slow)
-        ret = dummy = ListNode(-1)
-        p1 = head
-        p2 = newHead
-        # link the two lists together.
-        while p1 and p2:
-            dummy.next = p1
-            p1 = p1.next
-            dummy = dummy.next
-            dummy.next = p2
-            p2 = p2.next
-            dummy = dummy.next
-
-        if p2:
-            dummy.next = p2
-        head.next = ret.next.next
 
 
 if __name__ == '__main__':
