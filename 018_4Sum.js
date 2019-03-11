@@ -10,7 +10,6 @@ var fourSum = function(nums, target) {
     var i= 0;
     var re_list = [];
     nums.sort(function(a,b){return(a-b)});
-    console.log(nums);
     while(i<nums.length-3){
         if(i>0 && nums[i]===nums[i-1]){
             i++;
@@ -27,12 +26,12 @@ var fourSum = function(nums, target) {
                 var sum_cur = nums[i]+nums[j]+nums[l]+nums[r];
                 if(sum_cur === target){
                     re_list.push([nums[i],nums[j],nums[l],nums[r]]);
+                    r--;
                     l++;
-                    if(l<r && nums[l]===nums[l-1]){
+                    while(l<r && nums[l]===nums[l-1]){
                         l++;
                     };
-                    r--;
-                    if(l<r &&nums[r]===nums[r+1]){
+                    while(l<r &&nums[r]===nums[r+1]){
                         r--;
                     };
                 }else if(sum_cur > target){
@@ -40,8 +39,7 @@ var fourSum = function(nums, target) {
                 }else{
                     l++;
                 };
-                console.log([i,j,l,r]);
-            }
+            };
             j++;
         };
         i++;
