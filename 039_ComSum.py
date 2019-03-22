@@ -48,6 +48,29 @@ class question(object):
         res = []
         dfs(candidates, 0, target, [], res)
         return res
+    
+    def combinationSum(self, candidates, target)://faster than 93.92%
+        """
+        :type candidates: List[int]
+        :type target: int
+        :rtype: List[List[int]]
+        """
+        def dfs(candidates, start, target, path, res):
+            if target == 0:
+                return res.append(path + [])
+
+            for i in range(start, len(candidates)):
+
+                if target >= candidates[i]:
+                    path.append(candidates[i])
+                    dfs(candidates, i, target - candidates[i], path, res)
+                    path.pop()
+                else:
+                    break
+        candidates.sort()
+        res = []
+        dfs(candidates, 0, target, [], res)
+        return res
 
 if __name__ == '__main__':
     #List = [1,2,3,6,7,9,10]
