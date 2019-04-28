@@ -17,7 +17,6 @@ var permuteUnique = function(nums) {
         var i;
         for(i=0;i<nums.length;i++){
             if(i>0 && nums[i]===nums[i-1] && visited_set[i-1]===1){
-                visited_set[i]==1;
                 continue;
             };
             if (visited_set[i] === undefined){
