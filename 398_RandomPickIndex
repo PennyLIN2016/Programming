@@ -1,0 +1,22 @@
+class Solution:
+#Runtime: 368 ms, faster than 32.29% of Python3 online submissions for Random Pick Index.
+#Memory Usage: 21.9 MB, less than 5.26% of Python3 online submissions for Random Pick Index.
+    def __init__(self, nums: List[int]):
+        self.dic={}
+        # time :o(n)  space: o(n)
+        for i in range(len(nums)):
+            if nums[i] in self.dic:
+                self.dic[nums[i]].append(i)
+            else:
+                self.dic[nums[i]]=[i]
+            
+
+    def pick(self, target: int) -> int:
+    # time o(1)
+        return(self.dic[target][random.randint(0,len(self.dic[target])-1)])
+        
+
+
+# Your Solution object will be instantiated and called as such:
+# obj = Solution(nums)
+# param_1 = obj.pick(target)
