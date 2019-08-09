@@ -32,7 +32,7 @@ class Solution(object):
         # dfs solution(others)
         def findnext(nums,index,target):
             for i in range(2):
-                # the two target can skip some numbers, keep the current possible set . do not need to start for the start number to travel all possible.
+                # the two target can skip impossible numbers, keep the current possible set and try all possible next number 
                 if target[i]>=nums[index]:
                     target[i]-=nums[index]
                     if target[i]==0 or findnext(nums,index+1,target): return True
