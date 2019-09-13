@@ -1,0 +1,16 @@
+INFO:root:2019-09-13 13:21:54.942000  --The First Task started --!!!
+INFO:root:2019-09-13 13:21:54.943000  removed previous files!!!
+INFO:root:2019-09-13 13:21:54.943000  Testing URL : https://theworldgame.sbs.com.au/video/1601102403995/england-down-kosovo-eight-goal-feast?playlist=match-highlights
+DEBUG:root:2019-09-13 13:23:45.785000 Current step:{'Play': "document.getElementsByClassName('video-player__play-pause-icon')[0].click()"}
+DEBUG:root:2019-09-13 13:24:01.066000 Current step:{'Wait': 80}
+DEBUG:root:2019-09-13 13:25:21.069000 Current step:{'Pause': "document.getElementsByClassName('video-player__play-pause-icon')[0].click()"}
+DEBUG:root:2019-09-13 13:25:36.201000 Current step:{'Wait': 10}
+DEBUG:root:2019-09-13 13:25:46.202000 Current step:{'Play': "document.getElementsByClassName('video-player__play-pause-icon')[0].click()"}
+DEBUG:root:2019-09-13 13:26:01.278000 Current step:{'Wait': 10}
+DEBUG:root:2019-09-13 13:26:11.283000 Current step:{'Wait': 10}
+DEBUG:root:2019-09-13 13:26:21.284000 Current step:{'Wait': 180}
+DEBUG:root:2019-09-13 13:29:21.287000 Current step:{'Pause': "document.getElementsByClassName('video-player__play-pause-icon')[0].click()"}
+INFO:root:
+---------The test case Passed------------
+
+INFO:root:2019-09-13 13:29:41.584000  --The First Task completed --!!!

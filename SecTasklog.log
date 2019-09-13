@@ -1,0 +1,22 @@
+INFO:root:2019-09-13 17:54:43.778000  --The second Task started --!!!
+INFO:root:2019-09-13 17:54:43.778000  removed previous files!!!
+INFO:root:2019-09-13 17:54:43.779000  Testing URL : https://www.sbs.com.au/guide/ajax_radio_program_catchup_data/program/cantonese
+INFO:root:2019-09-13 17:54:43.779000  Excepted file type : mp3
+DEBUG:root:2019-09-13 17:54:53.778000  start testing Audio URL : https://media.sbs.com.au/ondemand/audio/Friday_ONDemand_SBS_RADIO1_13_00.mp3?mtime=1568347699
+DEBUG:root:2019-09-13 17:54:53.974000  The Audio testing finished on https://media.sbs.com.au/ondemand/audio/Friday_ONDemand_SBS_RADIO1_13_00.mp3?mtime=1568347699
+DEBUG:root:2019-09-13 17:54:53.974000  start testing Audio URL : https://media.sbs.com.au/ondemand/audio/Wednesday_ONDemand_SBS_RADIO1_13_00.mp3?mtime=1568174871
+DEBUG:root:2019-09-13 17:54:54.122000  The Audio testing finished on https://media.sbs.com.au/ondemand/audio/Wednesday_ONDemand_SBS_RADIO1_13_00.mp3?mtime=1568174871
+DEBUG:root:2019-09-13 17:54:54.122000  start testing Audio URL : https://media.sbs.com.au/ondemand/audio/Monday_ONDemand_SBS_RADIO1_13_00.mp3?mtime=1568002087
+DEBUG:root:2019-09-13 17:54:54.281000  The Audio testing finished on https://media.sbs.com.au/ondemand/audio/Monday_ONDemand_SBS_RADIO1_13_00.mp3?mtime=1568002087
+DEBUG:root:2019-09-13 17:54:54.282000  start testing Audio URL : https://media.sbs.com.au/ondemand/audio/Friday_ONDemand_SBS_RADIO1_13_00.mp3?mtime=1568347699
+DEBUG:root:2019-09-13 17:54:54.418000  The Audio testing finished on https://media.sbs.com.au/ondemand/audio/Friday_ONDemand_SBS_RADIO1_13_00.mp3?mtime=1568347699
+INFO:root:
+INFO:root:---------------The Validation Result-------------
+INFO:root:API  :Pass  on https://www.sbs.com.au/guide/ajax_radio_program_catchup_data/program/cantonese
+INFO:root:Audio:Pass  on https://media.sbs.com.au/ondemand/audio/Friday_ONDemand_SBS_RADIO1_13_00.mp3?mtime=1568347699
+INFO:root:Audio:Pass  on https://media.sbs.com.au/ondemand/audio/Wednesday_ONDemand_SBS_RADIO1_13_00.mp3?mtime=1568174871
+INFO:root:Audio:Pass  on https://media.sbs.com.au/ondemand/audio/Monday_ONDemand_SBS_RADIO1_13_00.mp3?mtime=1568002087
+INFO:root:Audio:Pass  on https://media.sbs.com.au/ondemand/audio/Friday_ONDemand_SBS_RADIO1_13_00.mp3?mtime=1568347699
+INFO:root:---------------The Validation Result-------------
+INFO:root:
+INFO:root:2019-09-13 17:54:54.420000  --The second Task completed --!!!

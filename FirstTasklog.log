@@ -1,0 +1,11 @@
+INFO:root:2019-09-13 17:52:17.270000  --The First Task started --!!!
+INFO:root:2019-09-13 17:52:17.271000  removed previous files!!!
+INFO:root:2019-09-13 17:52:17.271000  Testing URL : https://theworldgame.sbs.com.au/video/1600471107966/belgium-brush-scotland-aside?playlist=match-highlights
+DEBUG:root:2019-09-13 17:54:06.143000 Current step:{'Play': "document.getElementsByClassName('video-player__play-pause-icon')[0].click()"}
+ERROR:root:2019-09-13 17:54:06.221000 Error in testStep: Message: javascript error: Cannot read property 'click' of undefined
+  (Session info: chrome=76.0.3809.132)
+
+INFO:root:
+---------The test case Failed------------
+
+INFO:root:2019-09-13 17:54:09.563000  --The First Task completed --!!!
