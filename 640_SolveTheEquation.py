@@ -49,11 +49,6 @@ class Solution(object):
             b+=flag*tmp
         print('go back to main()')
         return a,b
-    def solveEquation(self, equation):
-        """
-        :type equation: str
-        :rtype: str
-        """
 
 
 
