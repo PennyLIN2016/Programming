@@ -13,6 +13,24 @@ class Solution(object):
                 return False
             n/=3
         return True
+    
+    def isPowerOfThree2(self, n):
+        """
+        :type n: int
+        :rtype: bool
+        """
+        # brutal solution:
+        #Runtime: 76 ms, faster than 84.30% of Python online submissions for Power of Three.
+        #Memory Usage: 13.5 MB, less than 19.93% of Python online submissions for Power of Three.
+        # time: o(nlog3) space :o(1)
+        if n == 0: return False
+        if n == 1: return True
+        i = 1
+        while i < n:
+            i *= 3
+            if i == n: return True
+
+        return False
 
     def isPowerOfThree(self, n):
         """
