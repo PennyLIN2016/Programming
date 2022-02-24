@@ -14,7 +14,7 @@ class Solution(object):
                 stack=stack[:-3]+['#']
         return len(stack)==1 and stack[0]=='#'
 
-    def isValidSerialization(self, preorder):
+    def isValidSerialization2(self, preorder):
         """
         :type preorder: str
         :rtype: bool
@@ -39,6 +39,24 @@ class Solution(object):
                 diff+=2# for 2 children
 
         return diff==0
+    
+   def isValidSerialization3(self, preorder):
+        """
+        :type preorder: str
+        :rtype: bool
+        """
+        # save the nodes have not be cut off by a sub tree.
+        stack = []
+        for v in preorder.split(','):
+            stack.append(v)
+            # stack[-2:] == ['#', '#'] : the front node is one root of sub tree.
+            while len(stack)>= 3 and stack[-2:] == ['#', '#']:
+                # if the root is '#' -- False
+                if stack[-3] != '#': return False
+                # cut the sub tree and add a leave node
+                stack = stack[:-3] + ['#']
+        # the last stack should be the root 
+        return len(stack) == 1 and stack[0] == '#'
 
 
 if __name__ == '__main__':
