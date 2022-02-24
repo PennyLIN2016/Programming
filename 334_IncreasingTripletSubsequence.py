@@ -11,6 +11,7 @@ class Solution(object):
         for value in nums:
             # min_2 : the min value there is a value less then min_2 in front of min_2.
             # this line is the only path for Ture
+            # if len < 3 can't go to this branch.
             if value > min_2 : return True
             # min_1 : the lest value
             if value < min_1:
