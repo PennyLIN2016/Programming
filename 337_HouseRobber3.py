@@ -15,12 +15,13 @@ class Solution(object):
         #Memory Usage: 15.9 MB, less than 71.96% of Python online submissions for House Robber III.
         # Recursion w/ memorization  solution: time o(n) space: o(n)
         def bestRobber(node):
-            if node==None: return 0,0,0
-            l,ll,lr= bestRobber(node.left)
-            r,rl,rr= bestRobber(node.right)
-            # return : the node`s max value, left`s max value, right`s max value
-            return max(node.val+ll+lr+rl+rr,l+r),l,r
-
+            # return (max value for node root, max vlaue for left child root,
+            # max vlaue for the right child root)
+            if node == None: return 0, 0, 0
+            l, ll, lr = bestRobber(node.left)
+            r, rl, rr = bestRobber(node.right)
+            # max value for robbing the node = node val + all grandchild node values
+            return max(node.val+ ll+lr+rr+rl, l+r), l, r
         return bestRobber(root)[0]
 
 
