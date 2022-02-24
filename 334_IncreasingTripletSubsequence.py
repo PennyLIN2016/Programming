@@ -10,6 +10,7 @@ class Solution(object):
         min_1,min_2 = float('inf'),float('inf')
         for value in nums:
             # min_2 : the min value there is a value less then min_2 in front of min_2.
+            # this line is the only path for Ture
             if value > min_2 : return True
             # min_1 : the lest value
             if value < min_1:
