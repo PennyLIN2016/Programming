@@ -1,5 +1,5 @@
 class Solution(object):
-    def reverseString(self, s):
+    def reverseString1(self, s):
         """
         :type s: List[str]
         :rtype: None Do not return anything, modify s in-place instead.
@@ -13,6 +13,13 @@ class Solution(object):
             s[l],s[r]=s[r],s[l]
             l+=1
             r-=1
+     def reverseString2(self, s):
+        """
+        :type s: List[str]
+        :rtype: None Do not return anything, modify s in-place instead.
+        """
+        for i in range(int(len(s)/2)):
+            s[i], s[-1-i] = s[-1-i],s[i]
 
 if __name__ == '__main__':
     k = Solution()
