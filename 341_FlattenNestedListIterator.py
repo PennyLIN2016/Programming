@@ -59,6 +59,39 @@ class NestedIterator(object):
 # while i.hasNext(): v.append(i.next())
 
 
+## solution 2:
+class NestedIterator(object):
+    def __init__(self, nestedList):
+        """
+        Initialize your data structure here.
+        :type nestedList: List[NestedInteger]
+        """
+        self._list = []
+        self._cursor = 0
+        self.getList(nestedList)
+
+    def getList(self, list):
+
+        for v in list:
+            if v.isInteger():
+                self._list.append(v.getInteger())
+            else:
+                self.getList(v.getList())
+
+    def next(self):
+        """
+        :rtype: int
+        """
+        self._cursor += 1
+        return self._list[self._cursor-1]
+    
+    def hasNext(self):
+        """
+        :rtype: bool
+        """
+        return self._cursor != len(self._list)
+
+
 if __name__ == '__main__':
     l= [[1,1],2,[1,1]]
     i, v = NestedIterator(l), []
