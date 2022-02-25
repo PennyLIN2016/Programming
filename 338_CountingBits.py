@@ -33,7 +33,25 @@ class Solution(object):
                 res[i]= res[pre]+1
                 pre+=1
         return res
-
+    
+    def countBits3(self, n):
+        """
+        :type n: int
+        :rtype: List[int]
+        """
+        #Runtime: 171 ms, faster than 24.65% of Python online submissions for Counting Bits.
+        #Memory Usage: 17.4 MB, less than 31.96% of Python online submissions for Counting Bits.
+        # time: o(n*n) space o(n)
+        ans = [0]*(n+1)
+        for i in range(1,n+1):
+            #print('i-{}'.format(bin(i)))
+            s =str(bin(i))
+            s2 = s[2:].split('0')
+            s3 = ''.join(s2)
+            #print('s-{} s2-{} s3-{}'.format(s, s2, s3))
+            ans[i]  = len(s3)
+            #print('iBits-{}'.format(ans[i]))
+        return ans
 
 
 
