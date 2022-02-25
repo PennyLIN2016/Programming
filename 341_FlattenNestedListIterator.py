@@ -60,6 +60,8 @@ class NestedIterator(object):
 
 
 ## solution 2:
+#Runtime: 63 ms, faster than 92.18% of Python online submissions for Flatten Nested List Iterator.
+#Memory Usage: 19.1 MB, less than 81.84% of Python online submissions for Flatten Nested List Iterator.
 class NestedIterator(object):
     def __init__(self, nestedList):
         """
