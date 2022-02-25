@@ -20,6 +20,25 @@ class Solution(object):
             l+=1
             r-=1
         return ''.join(res)
+    def reverseVowels2(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        vowels = set(['a', 'e', 'i', 'o','u'])
+        l, r = 0, len(s)-1
+        slist = list(s)
+        while l<r:
+            if slist[l].lower() not in vowels:
+                l += 1
+                continue
+            if slist[r].lower() not in vowels:
+                r -= 1
+                continue
+            slist[l], slist[r] = slist[r], slist[l]
+            l += 1
+            r -= 1
+        return ''.join(slist)
 if __name__ == '__main__':
     k = Solution()
     l= "leetcode"
