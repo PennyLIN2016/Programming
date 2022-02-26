@@ -1,4 +1,3 @@
-import heapq
 class Solution(object):
     def topKFrequent(self, nums, k):
         """
@@ -27,7 +26,33 @@ class Solution(object):
                 return res
 
         return res
+    def topKFrequent2(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: List[int]
+        """
+        numberDict = dict()
+        for v in nums:
+            if v in list(numberDict.keys()):
+                numberDict[v] += 1
+            else:
+                numberDict[v] = 1
+        freqDict = dict()
+        for key, v in numberDict.items():
+            if -v in freqDict.keys():
+                freqDict[-v].append(key)
+            else:
+                freqDict[-v] = [key]
 
+        import heapq
+        targetF = freqDict.keys()
+        heapq.heapify(targetF)
+        res = []
+        while len(res) < k:
+            f = heapq.heappop(targetF)
+            res += freqDict[f]
+        return res
 
 if __name__ == '__main__':
     k = Solution()
