@@ -14,6 +14,25 @@ class Solution(object):
         def gcd(a,b):
             return a if b==0 else gcd(b,a%b)
         return z==0 or( (x+y)>=z and z% gcd(x,y)==0)
+    def canMeasureWater2(self, jug1Capacity, jug2Capacity, targetCapacity):
+        """
+        :type jug1Capacity: int
+        :type jug2Capacity: int
+        :type targetCapacity: int
+        :rtype: bool
+        """
+        def gcd(n1, n2):
+            r = 1
+            f = 1
+            while r< n1 and r <n2:
+                r +=1
+                if n1%r == 0 and n2%r == 0:
+                    f = r
+            return f
+        f = gcd(jug1Capacity,jug2Capacity)
+        #  you must have targetCapacity liters of water contained within one or both buckets by the end.
+        # so jug1Capacity+ jug2Capacity>= targetCapacity
+        return (jug1Capacity+ jug2Capacity)>= targetCapacity and targetCapacity%f == 0
 
 
 if __name__ == '__main__':
