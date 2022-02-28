@@ -17,7 +17,27 @@ class Solution(object):
             res+=pre
         return res
 
+    def countNumbersWithUniqueDigits2(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        dp = [1]* (n+1)
+        for i in range(1, n+1):
+            if i == 1:
+                pre = 9
+            elif i == 2:
+                pre = 81
+            else:
+                pre *= (11-i)
 
+            # pre  the count of i-digit number without repeated digit.
+            # 0 - 1
+            # 1- 10
+            # 2- 9*9
+            dp[i] = dp[i-1] + pre
+
+        return dp[n]
 
 if __name__ == '__main__':
     k = Solution()
