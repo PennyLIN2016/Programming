@@ -43,6 +43,20 @@ class Solution(object):
         for i in range(k):
             res = heapq.heappop(nums)
         return res
+    
+    def kthSmallest2(self, matrix, k):
+        """
+        :type matrix: List[List[int]]
+        :type k: int
+        :rtype: int
+        """
+        import heapq
+        if k == 1: return matrix[0][0]
+        nums = []
+        for v in matrix:
+            nums.extend(v)
+        heapq.heapify(nums)
+        return heapq.nsmallest(k, nums)[-1]
 
 
 if __name__ == '__main__':
