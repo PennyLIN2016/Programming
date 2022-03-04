@@ -1,6 +1,6 @@
 
 class Solution(object):
-    def wiggleMaxLength(self, nums):
+    def wiggleMaxLength1(self, nums):
         """
         :type nums: List[int]
         :rtype: int
@@ -29,6 +29,28 @@ class Solution(object):
         for j in range(len(nums)-1,0,-1):
             if dp[j][1]!=0 : return dp[j][0]
         return 1
+    def wiggleMaxLength1(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        # dp solution: time : o(n) space: o(n)
+        if len(nums)<= 1: return len(nums)
+        up = [0 for _ in range(len(nums))]
+        down = [0 for _ in range(len(nums))]
+        up[0], down[0] = 1, 1
+        for i in range(1,len(nums)):
+            pre, cur = nums[i-1], nums[i]
+            if pre == cur:
+                up[i] = up[i-1]
+                down[i] = down[i-1]
+            elif pre> cur:
+                down[i] = up[i-1] +1
+                up[i] = up[i-1]
+            else:
+                up[i] = down[i-1]+1
+                down[i] = down[i-1]
+        return max(down[-1], up[-1])
 
 
 
