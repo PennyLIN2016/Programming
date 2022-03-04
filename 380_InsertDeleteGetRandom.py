@@ -50,7 +50,38 @@ class RandomizedSet(object):
         return self.nums[i]
 
 
+class RandomizedSet2(object):
+    def __init__(self):
+        self._existed = set()
 
+    def insert(self, val):
+        """
+        :type val: int
+        :rtype: bool
+        """
+        if val in self._existed:
+            return False
+        self._existed.add(val)
+        return True
+
+    def remove(self, val):
+        """
+        :type val: int
+        :rtype: bool
+        """
+        if val in self._existed:
+            self._existed.remove(val)
+            return True
+        return False
+
+    def getRandom(self):
+        """
+        :rtype: int
+        """
+        import random
+        if not self._existed: return None
+        pos = random.randint(0, len(self._existed)-1)
+        return list(self._existed)[pos]
 
 
 if __name__ == '__main__':
