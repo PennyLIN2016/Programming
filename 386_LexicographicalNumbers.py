@@ -23,7 +23,18 @@ class Solution(object):
                while cur%10==0:
                     cur//=10
         return res
-
+       def lexicalOrder2(self, n):
+        """
+        :type n: int
+        :rtype: List[int]
+        """
+        import heapq
+        res = ['']*n
+        for i in range(1, n+1):
+            res[i-1] = str(i)
+        heapq.heapify(res)
+        # sorted(): O(n log n)
+        return map(int, sorted(res))
 
 if __name__ == '__main__':
     object = Solution()
