@@ -25,6 +25,23 @@ class Solution(object):
         tmp = self.original[:]
         random.shuffle(tmp)
         return tmp
+    
+    def shuffle2(self):
+        """
+        :rtype: List[int]
+        """
+        #Runtime: 344 ms, faster than 51.60% of Python online submissions for Shuffle an Array.
+        #Memory Usage: 19.6 MB, less than 51.41% of Python online submissions for Shuffle an Array.
+        import random
+        indexs = [i for i in range(len(self._original))]
+
+        res = []
+        for _ in range(len(self._original)):
+            index = random.choice(indexs)
+            res.append(self._original[index])
+            indexs.remove(index)
+            
+        return res
 
 
 
