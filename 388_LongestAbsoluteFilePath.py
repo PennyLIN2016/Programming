@@ -30,6 +30,29 @@ class Solution(object):
                         path.append(len(tmp))
                 break
         return max_l
+    
+    def lengthLongestPath1(self, input):
+        """
+        :type input: str
+        :rtype: int
+        """
+        # Runtime: 10 ms, faster than 99.45% of Python online submissions for Longest Absolute File Path.
+        #Memory Usage: 13.6 MB, less than 70.17% of Python online submissions for Longest Absolute File Path.
+        # time: o(n*k) space: o(n) n: path number, k: the lever number
+        dirList = input.split('\n')
+        stackLen = []
+        res = float('-inf')
+        for v in dirList:
+            num = v.count('\t')
+            while len(stackLen) >num:
+                stackLen.pop()
+            v = v.split('\t')[-1]
+            stackLen.append(len(v))
+            if '.' in v:
+                # the path should add '/'between folder
+                res = max(res, sum(stackLen)+num)
+                stackLen.pop()
+        return 0 if res == float('-inf') else res
 
 if __name__ == '__main__':
     object = Solution()
