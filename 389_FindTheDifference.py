@@ -16,6 +16,19 @@ class Solution(object):
                 resCount[v]-=1
             else:
                 return v
+    def findTheDifference1(self, s, t):
+        """
+        :type s: str
+        :type t: str
+        :rtype: str
+        """
+        import collections
+        c1 = collections.Counter(s)
+        c2 = collections.Counter(t)
+        # c += Counter() : remove all zero/negetive elements
+        left = (c2-c1) + collections.Counter()
+        return left.keys()[0]
+
 
 if __name__ == '__main__':
     object = Solution()
