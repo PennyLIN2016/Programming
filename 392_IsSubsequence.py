@@ -35,6 +35,27 @@ class Solution(object):
             if v==tmp[0]:
                 tmp.popleft()
         return not tmp
+            if not s: return True
+    def isSubsequence1(self, s, t):
+        """
+        :type s: str
+        :type t: str
+        :rtype: bool
+        """
+        #Runtime: 16 ms, faster than 93.76% of Python online submissions for Is Subsequence.
+        #Memory Usage: 13.6 MB, less than 48.81% of Python online submissions for Is Subsequence.
+        if not s: return True
+        if not t: return False
+        ls, lt = len(s), len(t)
+        pos1, pos2 = 0, 0
+        while pos1 < ls and pos2 <lt:
+            while pos2<lt and s[pos1]!= t[pos2]:
+                pos2+=1
+            if pos2 == lt: return False
+            if pos1 == ls-1: return True
+            pos1 += 1
+            pos2 +=1
+        return False
 
 if __name__ == '__main__':
     object = Solution()
