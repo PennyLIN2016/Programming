@@ -12,6 +12,7 @@ class Solution(object):
         curStr=''
         for v in s:
             if v.isdigit():
+                # for example: "12[a]"
                 curTime= curTime*10+int(v)
             elif v=="[":
                 path.append(curStr)
