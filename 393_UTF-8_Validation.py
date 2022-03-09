@@ -25,7 +25,38 @@ class Solution(object):
                 if (v>>6)!=0b10:return False
                 next-=1
         return next==0
+        
+    def validUtf82(self, data):
+        """
+        :type data: List[int]
+        :rtype: bool
+        """
+        def getByteType(num):
+            r = 0
+            base = 0b10000000
+            while num >= 0:
+                if num & base:
+                    r += 1
+                    base = base >> 1
+                else:
+                    return r
+        
+        expect = 0
+        for v in data:
+            t = getByteType(v)
+            # UTF-8 encoding should be less than 4 bytes
+            if t > 4: return False
+            if expect == 0:
+                if t == 1:
+                    return False
+                if t != 0:
+                    expect = t-1
+            else:
+                if t != 1:
+                    return False
+                expect -= 1
 
+        return expect == 0
 
 if __name__ == '__main__':
     object = Solution()
