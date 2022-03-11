@@ -37,6 +37,7 @@ class Solution(object):
         """
         # Runtime: 20 ms, faster than 93.41% of Python online submissions for Longest Substring with At Least K Repeating Characters.
         # Memory Usage: 13.7 MB, less than 54.40% of Python online submissions for Longest Substring with At Least K Repeating Characters.
+        # recursion solution
         if k > len(s): return 0
         for c in s:
             # if str is the target string is decided by the less occurance char in the string. 
