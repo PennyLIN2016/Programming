@@ -33,7 +33,28 @@ class Solution:
             res= max(res,f)
             if res>= float('inf'): return float('inf')
         return res
-
+    
+    def maxRotateFunction3(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        # Runtime: 1451 ms, faster than 40.48% of Python online submissions for Rotate Function.
+        #Memory Usage: 21 MB, less than 88.09% of Python online submissions for Rotate Function.
+        # time: o(n) space: o(1)
+        f, n = 0, len(nums)
+        for i in range(n):
+            f += i*nums[i]
+        #print('f0-{}'.format(f))
+        res = f
+        sumValue = sum(nums)
+        for i in range(1, n):
+            f += sumValue - n*nums[n-i]
+            res = max(f, res)
+            # avoid float out and the result is negetive value
+            if res>= float('inf'): return float('inf')
+            #print('f-i: {} res: {}'.format(f, res))
+        return res
 
 
 if __name__ == '__main__':
