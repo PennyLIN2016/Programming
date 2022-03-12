@@ -37,9 +37,11 @@ class Solution(object):
             m*=10
             cur_head*=10
         # get the right number
-        cur_head+=int((n-1)/l)
+        # the first numer is 10000, so shoud use n-1, not n
+        # number : 0...n-1
+        cur_number = cur_head+ int((n-1)/l)
         # get the right bit in the right number
-        return int(str(cur_head)[(n-1)%l])
+        return int(str(cur_number)[(n-1)%l])
 
 
 if __name__ == '__main__':
