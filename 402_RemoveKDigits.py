@@ -13,6 +13,7 @@ class Solution(object):
         for value in num:
             #make sure to keep the old order
             # if the number is greater than the later one , remove the front one
+            # remove the first k non-ascend values
             while stack and k and int(stack[-1])>int(value):
                 stack.pop()
                 k-=1
@@ -20,8 +21,10 @@ class Solution(object):
         # k>1: the left numbers is in increasing order already
         # romove the greater ones
         while k:
+            # remove the most right vlaues: whick should be greater the the left ones.
             stack.pop()
             k-=1
+        # make sure remove all leading zero
         return str(int(''.join(stack)))
 
 
