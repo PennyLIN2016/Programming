@@ -25,6 +25,27 @@ class Solution(object):
             if tmp.left:stack.append((tmp.left,1))
             if tmp.right:stack.append((tmp.right,0))
         return res
+    
+   def sumOfLeftLeaves1(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        #Runtime: 25 ms, faster than 62.32% of Python online submissions for Sum of Left Leaves.
+        #Memory Usage: 14 MB, less than 68.84% of Python online submissions for Sum of Left Leaves.
+        import collections
+        if not root: return 0
+        res = 0
+        dq = collections.deque([(root, False)])
+        while dq:
+            node, left = dq.popleft()
+            if not node.left and not node.right and left:
+                res += node.val
+            if node.left:
+                dq.append([node.left, True])
+            if node.right:
+                dq.append([node.right, False])
+        return res
 
 if __name__ == '__main__':
     object = Solution()
