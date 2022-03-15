@@ -9,6 +9,12 @@ class Solution(object):
         # other`s solution
         # sort the list by h and index.
         # the taller ones in the front
+        
+        # the smaller value would not break the rule, so should make sure the higher people position before
+        # insert a value.
+        # for the same value, just insert the people in v[1]ascend order
+        # people should be sorted by v[0] descended order and by v[1]ascend order
+        
         people.sort(key = lambda x:(-x[0],x[1]))
         res=[]
         for p in people:
