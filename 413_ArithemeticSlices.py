@@ -8,6 +8,7 @@ class Solution(object):
         #Memory Usage: 12.1 MB, less than 85.71% of Python online submissions for Arithmetic Slices.
         # dp solution: time : o(n) time: o(n)
         if not A or len(A)<3:return 0
+        # dp[i]: the added res in this pos. 
         dp=[0]* len(A)
         for i in range(1,len(A)-1):
             # dp[i]: including A[i+1],the numberOf ArithmeticSlices
