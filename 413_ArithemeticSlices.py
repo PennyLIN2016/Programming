@@ -15,6 +15,28 @@ class Solution(object):
             if A[i]-A[i-1]==A[i+1]-A[i]:
                 dp[i]=dp[i-1]+1
         return sum(dp)
+    def numberOfArithmeticSlices(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        #Runtime: 29 ms, faster than 63.33% of Python online submissions for Arithmetic Slices.
+        #Memory Usage: 13.6 MB, less than 59.45% of Python online submissions for Arithmetic Slices.
+        # time: o(n) space: o(1)
+        if len(nums)<3: return 0
+        step = nums[1]-nums[0]
+        res, count = 0, 2
+        for i in range(2, len(nums)):
+            if nums[i]- nums[i-1] == step:
+                count += 1
+            else:
+                # math: sum[1:n] = n*(n-1)/2
+                res += (count-1)*(count-2)/2
+                step = nums[i]- nums[i-1]
+                count = 2
+        #print('count: {}'.format(count))
+        return res + (count-1)*(count-2)/2
+
 
 if __name__ == '__main__':
     object = Solution()
