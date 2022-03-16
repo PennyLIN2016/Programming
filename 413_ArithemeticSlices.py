@@ -36,6 +36,21 @@ class Solution(object):
                 count = 2
         #print('count: {}'.format(count))
         return res + (count-1)*(count-2)/2
+  def numberOfArithmeticSlices(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        res = 0
+        t = 1
+        for i in range(2, len(A)):
+            # the nth arithmetic num can add n-2 matches
+            if A[i] - A[i - 1] == A[i - 1] - A[i - 2]:
+                res += t
+                t += 1
+            else:
+                t = 1
+        return res
 
 
 if __name__ == '__main__':
