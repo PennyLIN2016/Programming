@@ -48,6 +48,41 @@ class Solution(object):
             k-=1
             tmp.remove(max(tmp))
         return max(tmp)
+    
+        def thirdMax1(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        #Runtime: 54 ms, faster than 47.23% of Python online submissions for Third Maximum Number.
+        #Memory Usage: 14.3 MB, less than 43.95% of Python online submissions for Third Maximum Number.
+        # time: o(nlgn) space: 0(1)
+        nums = list(set(nums))
+        # time: o(nlgn)
+        nums.sort()
+        if len(nums)<= 2:
+            return nums[-1]
+        else:
+            return nums[2]
+
+    def thirdMax(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        # Runtime: 40 ms, faster than 80.98% of Python online submissions for Third Maximum Number.
+        #Memory Usage: 14.3 MB, less than 65.87% of Python online submissions for Third Maximum Number.
+        # time: o(n) space: o(n)
+        numsSet = set(nums)
+        if len(numsSet) < 3:
+            # max time: o(n)
+            return max(numsSet)
+        # set.remove(): time: o(n)
+        # remove the first and second largest
+        numsSet.remove(max(numsSet))
+        numsSet.remove(max(numsSet))
+
+        return max(numsSet)
 
 
 if __name__ == '__main__':
