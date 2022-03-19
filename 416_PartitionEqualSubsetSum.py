@@ -43,6 +43,32 @@ class Solution(object):
         nums.sort(reverse = True)
         target= [sum(nums)>>1]*2
         return findnext(nums,0,target)
+    def canPartition(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: bool
+        """
+        #Runtime: 1283 ms, faster than 55.91% of Python online submissions for Partition Equal Subset Sum.
+        #Memory Usage: 13.8 MB, less than 83.29% of Python online submissions for Partition Equal Subset Sum.
+        # time: o(n*k) space: o(n)
+        if len(nums)< 2: return False
+        total = sum(nums)
+        if total%2!=0: return False
+        target = total//2
+        # dp[i] if there is sunset, which sum is i
+        dp = [True] +[False]*target
+        # use two loop to choose different combination.
+        # skip some value
+        for i, v in enumerate(nums):
+            # if select v, the sum of other elements is target-v
+            # for v, need dp[v]..dp[target]
+            for j in range(target,v-1,-1):
+                # for j to v
+                # count v in
+                # dp[i][j] = dp[i-1][j] | dp[i-1][j-nums[i]] (j >= nums[i])
+                dp[j]|= dp[j-v]
+                
+        return dp[target]
 
 
 if __name__ == '__main__':
