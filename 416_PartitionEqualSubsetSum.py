@@ -50,7 +50,7 @@ class Solution(object):
         """
         #Runtime: 1283 ms, faster than 55.91% of Python online submissions for Partition Equal Subset Sum.
         #Memory Usage: 13.8 MB, less than 83.29% of Python online submissions for Partition Equal Subset Sum.
-        # time: o(n*k) space: o(n)
+        # dp solution: time: o(n*k) space: o(n) k : sum()
         if len(nums)< 2: return False
         total = sum(nums)
         if total%2!=0: return False
@@ -69,6 +69,8 @@ class Solution(object):
                 dp[j]|= dp[j-v]
                 
         return dp[target]
+    
+    
 
 
 if __name__ == '__main__':
