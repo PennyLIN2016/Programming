@@ -32,6 +32,30 @@ class Solution(object):
             if cur_root: stack.append(cur_root)
             res.append(cur_child)
         return res
+    
+    def levelOrder(self, root):
+        """
+        :type root: Node
+        :rtype: List[List[int]]
+        """
+        #Runtime: 61 ms, faster than 37.88% of Python online submissions for N-ary Tree Level Order Traversal.
+        # Memory Usage: 16.2 MB, less than 93.94% of Python online submissions for N-ary Tree Level Order Traversal.
+        # time: o(n): the number of nodes space: o(n)
+        if not root : return []
+        stack= [root]
+        res = [[root.val]]
+        # trace the node by levels
+        while stack:
+            tmpNode = []
+            childList = []
+            for v in stack:
+                for child in v.children:
+                    tmpNode.append(child)
+                    childList.append(child.val)
+            stack = tmpNode
+            if childList!= []:
+                res.append(childList)
+        return res
 
 
 
