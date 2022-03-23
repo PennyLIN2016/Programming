@@ -12,6 +12,15 @@ class Solution(object):
         for value in str1:
             if value:res+=1
         return res
+    def countSegments(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        #Runtime: 21 ms, faster than 58.16% of Python online submissions for Number of Segments in a String.
+        #Memory Usage: 13.4 MB, less than 57.14% of Python online submissions for Number of Segments in a String.
+        if not s: return 0
+        return len(s.split())
 
 if __name__ == '__main__':
     object = Solution()
