@@ -32,6 +32,36 @@ class Solution(object):
                 pos=i
 
         return min(res1,res2)
+    
+        def eraseOverlapIntervals(self, intervals):
+        """
+        :type intervals: List[List[int]]
+        :rtype: int
+        """
+        #Runtime: 1367 ms, faster than 82.19% of Python online submissions for Non-overlapping Intervals.
+        # Memory Usage: 59.7 MB, less than 72.56% of Python online submissions for Non-overlapping Intervals.
+        # time: o(nlgn) space: o(1)
+        # ordered by [0]
+        intervals.sort()
+        l = len(intervals)
+        if l == 1: return 0
+        
+        # the last left interval
+        pre = intervals[0]
+        i, res = 0., 0
+        while i < l-1:
+            i += 1
+            if intervals[i][0] >= pre[1]:
+                # no overlapping: just slide forward
+                pre = intervals[i]
+            else:
+                # overlapping: need to remove one element
+                res += 1
+                # pre is the element with smaller end time
+                if intervals[i][1] < pre[1]:
+                    pre = intervals[i]
+
+        return res
 
     def eraseOverlapIntervals1(self, intervals):
         """
