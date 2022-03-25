@@ -59,8 +59,8 @@ class Solution(object):
         :type intervals: List[List[int]]
         :rtype: List[int]
         """
-        # Runtime: 484 ms, faster than 29.09% of Python online submissions for Find Right Interval.
-        # Memory Usage: 19.1 MB, less than 63.64% of Python online submissions for Find Right Interval.
+        # Runtime: 230 ms, faster than 100.00% of Python online submissions for Find Right Interval.
+        # Memory Usage: 18.9 MB, less than 87.27% of Python online submissions for Find Right Interval.
         # bisect solution time: o(n*nlgn) time: o(n)
         m = len(intervals)
         if m == 1:
