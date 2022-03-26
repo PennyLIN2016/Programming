@@ -33,7 +33,29 @@ class Solution(object):
         self.NodeFind(node.left,t,r)
         self.NodeFind(node.right,t,r)
 
-
+    def pathSum(self, root, sum):
+        """
+        :type root: TreeNode
+        :type sum: int
+        :rtype: int
+        """
+        # dfs+ dfs solution
+        #dfs solution to find the res from one root : o(n)
+        # dfs solution to find all nodes as root node. o(n)
+        # time: o(n**2)
+        # start for node to travel
+        # return the path of for node to one leave the combination of target
+        def dfs(node, target):
+            if not node: return 0
+            res = 0
+            if target == node.val:
+                res += 1
+            res += dfs(node.left, target-node.val)
+            res -= dfs(node.right, target-node.val)
+            return res
+        if not root: return 0
+        # travel all node as root
+        return dfs(root, sum) + self.pathSum(root.left, sum) + self.pathSum(root.right, sum)
 
 
 
