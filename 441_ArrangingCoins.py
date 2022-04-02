@@ -4,13 +4,14 @@ class Solution(object):
         :type n: int
         :rtype: int
         """
-        #Runtime: 788 ms, faster than 30.04% of Python online submissions for Arranging Coins.
-        #Memory Usage: 11.9 MB, less than 14.29% of Python online submissions for Arranging Coins.
-        # brutal soltuion: time o(n) space o(1)
-        res=-1
-        while n>=0:
-            res+=1
-            n-=res+1
+        # brutal solution :
+        # Runtime: 637 ms, faster than 42.75% of Python online submissions for Arranging Coins.
+        # Memory Usage: 13.5 MB, less than 32.43% of Python online submissions for Arranging Coins.
+
+        res = 0
+        while n >= res + 1:
+            res += 1
+            n -= res
         return res
     def arrangeCoins1(self, n):
         """
