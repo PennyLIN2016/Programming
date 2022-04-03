@@ -35,6 +35,39 @@ class Solution(object):
         print chars
         return newI
 
+   def compress(self, chars):
+        """
+        :type chars: List[str]
+        :rtype: int
+        """
+        # Runtime: 63 ms, faster than 43.03% of Python online submissions for String Compression.
+        # Memory Usage: 13.9 MB, less than 17.26% of Python online submissions for String Compression.
+        # time: O(n) space: o(1)
+        # Add a end mark char in the end of the string to easy the handling of loop
+        chars += [' ']
+        # cur: cur char in the done list
+        # cnt: current count of the cur char
+        # index: the cur position to be filled by new context
+        cur, cnt, index = chars[0], 1, 0
+        for i in range(1, len(chars)):
+            if chars[i] == cur:
+                cnt += 1
+            else:
+                if cnt == 1:
+                    chars[index] = cur
+                    cur = chars[i]
+                    index += 1
+                else:
+                    chars[index] = cur
+                    index += 1
+                    tmp = str(cnt)
+                    chars[index:index+len(tmp)] = tmp
+                    index += len(tmp)
+                    cnt = 1
+                    cur = chars[i]
+        while len(chars) > index:
+            chars.pop()
+        return index
 
 
 if __name__ == '__main__':
