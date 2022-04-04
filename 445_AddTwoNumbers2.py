@@ -43,4 +43,40 @@ class Solution(object):
             res=ListNode(1)
             res.next=t
         return res
-
+    def addTwoNumbers(self, l1, l2):
+        """
+        :type l1: ListNode
+        :type l2: ListNode
+        :rtype: ListNode
+        """
+        # Runtime: 69 ms, faster than 68.09% of Python online submissions for Add Two Numbers II.
+        # Memory Usage: 13.5 MB, less than 66.90% of Python online submissions for Add Two Numbers II.
+        # Solution: o(n) space:o(n)
+        if not l1 : return l2
+        stack1 = []
+        stack2 = []
+        while l1 or l2:
+            if l1:
+                stack1.append(l1.val)
+                l1 = l1.next
+            if l2:
+                stack2.append(l2.val)
+                l2 = l2.next
+        carry = 0
+        pre = None
+        while stack1 or stack2 or carry == 1:
+            sumVal = carry
+            if stack1:
+                sumVal += stack1.pop()
+            if stack2:
+                sumVal += stack2.pop()
+            cur = ListNode()
+            if sumVal > 9:
+                carry = 1
+                cur.val = sumVal - 10
+            else:
+                carry = 0
+                cur.val = sumVal
+            cur.next = pre
+            pre = cur
+        return pre
