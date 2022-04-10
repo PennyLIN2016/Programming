@@ -27,6 +27,60 @@ class Solution(object):
         root.left= self.deleteNode(root.left,key)
         root.right= self.deleteNode(root.right,key)
         return root
+    def deleteNode1(self, root, key):
+        """
+        :type root: TreeNode
+        :type key: int
+        :rtype: TreeNode
+        """
+        # Runtime: 68 ms, faster than 84.42% of Python online submissions for Delete Node in a BST.
+        # Memory Usage: 21.6 MB, less than 18.84% of Python online submissions for Delete Node in a BST.
+        # updated by right child
+        # time: o(height(bst)) space: o(1)
+        if root is None:
+            return root
+        if root.val > key:
+            root.left = self.deleteNode(root.left, key)
+        elif root.val < key:
+            root.right = self.deleteNode(root.right, key)
+        else:
+            if not root.left:
+                return root.right
+            if not root.right:
+                return root.left
+            tmp = root.right
+            while tmp.left:
+                tmp = tmp.left
+            root.val = tmp.val
+            root.right = self.deleteNode(root.right, tmp.val)
+        return root
+    def deleteNode(self, root, key):
+        """
+        :type root: TreeNode
+        :type key: int
+        :rtype: TreeNode
+        """
+        #Runtime: 64 ms, faster than 93.47% of Python online submissions for Delete Node in a BST.
+        #Memory Usage: 21.4 MB, less than 48.24% of Python online submissions for Delete Node in a BST.
+        # updated by left child
+        # time: o(height(bst)) space: o(1)
+        if not root:
+            return root
+        if root.val > key:
+            root.left = self.deleteNode(root.left, key)
+        elif root.val < key:
+            root.right = self.deleteNode(root.right, key)
+        else:
+            if not root.left:
+                return root.right
+            if not root.right:
+                return root.left
+            tmp = root.left
+            while tmp.right:
+                tmp = tmp.right
+            root.val = tmp.val
+            root.left = self.deleteNode(root.left, tmp.val)
+        return root
 
 if __name__ == '__main__':
     object = Solution()
