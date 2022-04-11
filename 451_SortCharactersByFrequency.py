@@ -22,6 +22,26 @@ class Solution(object):
         for f in order:
             res+=dict_fre[f]
         return res
+    
+    def frequencySort(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        #Runtime: 52 ms, faster than 79.03% of Python online submissions for Sort Characters By Frequency.
+        #Memory Usage: 15.9 MB, less than 65.86% of Python online submissions for Sort Characters By Frequency.
+        # space: o(n)
+        import collections
+        # time : o(n)
+        cnt = collections.Counter(s)
+        # time : o(nlogk): k = len(cnt) ==> o(nlogn)
+        # 
+        freCnt = cnt.most_common(len(cnt))
+        res = ''
+        for v in freCnt:
+            tmp = v[0] * v[1]
+            res += tmp
+        return res
 
 if __name__ == '__main__':
     object = Solution()
