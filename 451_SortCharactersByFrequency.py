@@ -35,7 +35,7 @@ class Solution(object):
         # time : o(n)
         cnt = collections.Counter(s)
         # time : o(nlogk): k = len(cnt) ==> o(nlogn)
-        # 
+        # for example: [('a', 5), ('b', 2), ('r', 2)]
         freCnt = cnt.most_common(len(cnt))
         res = ''
         for v in freCnt:
