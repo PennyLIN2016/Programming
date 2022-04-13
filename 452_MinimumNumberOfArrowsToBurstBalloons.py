@@ -19,8 +19,29 @@ class Solution(object):
             right=points[i][1]
             res+=1
         return res
-
-
+    def findMinArrowShots(self, points):
+        """
+        :type points: List[List[int]]
+        :rtype: int
+        """
+        # Runtime: 1261 ms, faster than 89.27% of Python online submissions for Minimum Number of Arrows to Burst Balloons.
+        # Memory Usage: 62.8 MB, less than 67.05% of Python online submissions for Minimum Number of Arrows to Burst Balloons.
+        # greedy solution: greedy pos solution
+        # time: o(nlgn) for sort() space: o(1)
+        # sorted by end x
+        # shot the arrow at the right pos(greedy pos) of one point to shot as many balloons as possible
+        points.sort(key=lambda x: x[1])
+        # the first arrow
+        # the arrow on the right pos
+        arrowPos = points[0][1]
+        arrows = 1
+        for i in range(1, len(points)):
+            if points[i][0] > arrowPos:
+                # if current arrow can't burst the balloon
+                # have to use a new arrow
+                arrowPos = points[i][1]
+                arrows += 1
+        return arrows
 
 if __name__ == '__main__':
     object = Solution()
