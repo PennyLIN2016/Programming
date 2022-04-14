@@ -22,6 +22,28 @@ class Solution(object):
             p1+=1
         return res
 
+    def findContentChildren(self, g, s):
+        """
+        :type g: List[int]
+        :type s: List[int]
+        :rtype: int
+        """
+        # Runtime: 139 ms, faster than 89.20% of Python online submissions for Assign Cookies.
+        # Memory Usage: 15 MB, less than 16.67% of Python online submissions for Assign Cookies.
+        # time: o(nlgn) space: o(1)
+        g.sort()
+        s.sort()
+        print('g-{} s-{}'.format(g, s))
+        k, c = 0, 0
+        res = 0
+        while c < len(s) and k < len(g):
+            if s[c] >= g[k]:
+                res += 1
+                c += 1
+                k += 1
+            else:
+                c += 1
+        return res
 
 
 
