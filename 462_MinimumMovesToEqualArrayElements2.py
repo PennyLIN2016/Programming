@@ -15,7 +15,22 @@ class Solution(object):
         print len(nums)/2
         print med
         return sum(abs(v-med) for v in nums)
-
+    
+    def minMoves2(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        # math theory: Minimizing the total/average distance is just a prominent property of a median.
+        # not the average, should be median number
+        # Runtime: 47 ms, faster than 100.00% of Python online submissions for Minimum Moves to Equal Array Elements II.
+        # Memory Usage: 14.6 MB, less than 76.04% of Python online submissions for Minimum Moves to Equal Array Elements II.
+        nums.sort()
+        med = nums[len(nums)//2]
+        res = 0
+        for v in nums:
+            res += abs(med - v)
+        return res
 
 if __name__ == '__main__':
     object = Solution()
