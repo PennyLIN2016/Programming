@@ -19,6 +19,27 @@ class Solution(object):
                     if j>0 and grid[i][j-1]:
                         res-=2
         return res
+    def islandPerimeter(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        # Runtime: 467 ms, faster than 72.73% of Python online submissions for Island Perimeter.
+        # Memory Usage: 13.9 MB, less than 33.40% of Python online submissions for Island Perimeter.
+        # brutal solution time: o(n*m) space: o(1)
+        res = 0
+        row, col = len(grid), len(grid[0])
+        dir = [(0, -1), (0, 1), (-1, 0), (1, 0)]
+        for r in range(row):
+            for c in range(col):
+                if grid[r][c] == 0:
+                    continue
+                for v in dir:
+                    rr, cc = r + v[0], c + v[1]
+                    if rr < 0 or rr > row-1 or cc < 0 or cc > col-1 or grid[rr][cc] == 0:
+                        res += 1
+        return res
+    
 
 if __name__ == '__main__':
     object = Solution()
