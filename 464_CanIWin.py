@@ -40,7 +40,46 @@ class Solution(object):
         if desiredTotal<=maxChoosableInteger: return True
         # state=0 : no number is used, and current total =0
         return search(0,0,)
+    def canIWin(self, maxChoosableInteger, desiredTotal):
+        """
+        :type maxChoosableInteger: int
+        :type desiredTotal: int
+        :rtype: bool
+        """
+        # Runtime: 2700 ms, faster than 99.12% of Python3 online submissions for Can I Win.
+        # Memory Usage: 121.3 MB, less than 84.52% of Python3 online submissions for Can I Win.
+        # dfs solution/ python 3 solution: time: o(n**2) space :o(n)
+        # 2 status dp: one is saved by dp dict , the other one is implementated by dfs.
+        # dfs深度优先搜索，搜索的过程中增加一个map来保存中途搜索结果避免重复搜索
+        if desiredTotal <= maxChoosableInteger:
+            return True
+        if maxChoosableInteger*(maxChoosableInteger + 1)/2 < desiredTotal:
+            return False
+        # store the visited path result
+        dp = {}
+        # 目标值是否能用剩余的数字子集来加到。
+        def dfs(choose, total, used):
+            # used: the number set has been visited
+            if used in dp:
+                return dp[used]
+            # try all possible choose in this turn
+            for i in range(choose):
+                # new syntax in python3 := that assigns values to variables as part of a larger expression.
+                # ((cur := (1 << i)) & used) i have been used before: use a bit to mark if the value has been used.
+                # if the i has been visited before, just skip
+                # take i+1
+                if not ((cur := (1 << i)) & used) \
+                        and (total <= i + 1 or not dfs(choose, total - i - 1, used | cur)):
+                    # check take i+1 solution
+                    # total <= (i + 1)  : this turn, the starter win
+                    # dfs(choose, total - i - 1, used | cur): used + take i+1: if true,  the peer can get total - (i+1)
+                    # when starter takes i+1. 
+                    dp[used] = True
+                    return True
+            dp[used] = False
+            return False
 
+        return dfs(maxChoosableInteger, desiredTotal, 0)
 
 if __name__ == '__main__':
     object = Solution()
