@@ -23,7 +23,34 @@ class Solution(object):
                 if len(v)>4 or not v:return "Neither"
                 if any(c not in validChar for c in v): return "Neither"
             return "IPv6"
-
+ def validIPAddress(self, queryIP: str) -> str:
+        # Runtime: 31 ms, faster than 85.27% of Python3 online submissions for Validate IP Address.
+        # Memory Usage: 14 MB, less than 37.75% of Python3 online submissions for Validate IP Address.
+        if '.' in queryIP:
+            frags = queryIP.split('.')
+            if len(frags) != 4:
+                return 'Neither'
+            for v in frags:
+                if not v.isdigit() \
+                        or(v[0] == '0' and len(v) != 1) \
+                        or int(v) > 255 or int(v) < 0:
+                    return 'Neither'
+            return 'IPv4'
+        elif ':' in queryIP:
+            frags = queryIP.split(':')
+            if len(frags) != 8:
+                return 'Neither'
+            for v in frags:
+                if len(v) > 4:
+                    return 'Neither'
+                try:
+                    int(v, 16)
+                except:
+                    return 'Neither'
+            return 'IPv6'
+        else:
+            return 'Neither'
+        
 if __name__ == '__main__':
     object = Solution()
     A=  "2001:0db8:85a3:0:0:8A2E:0370:7334"
