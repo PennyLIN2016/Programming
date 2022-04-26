@@ -23,7 +23,27 @@ class Solution(object):
                     dp[i][j]=max(dp[i][j],dp[i-zeros][j-ones]+1)
         return dp[m][n]
 
+        #Runtime: 3226 ms, faster than 76.52% of Python3 online submissions for Ones and Zeroes.
+        #Memory Usage: 14.1 MB, less than 81.81% of Python3 online submissions for Ones and Zeroes.
+        # greedy solution: time: o(l*m*n) space: (m*n)
+        # for the i bit 0 and j bit 1 : max size of subset
+        dp = [[0 for _ in range(n+1)] for _ in range(m+1)]
 
+        for v in strs:
+            # count characters
+            zeros, ones = 0, 0
+            for char in v:
+                if char == '0':
+                    zeros += 1
+                else:
+                    ones += 1
+            # ensure the i, j > zeros and ones
+            # start from m, n to zeros and ones.
+            for i in range(m, zeros-1, -1):
+                for j in range(n, ones-1, -1):
+                    print(dp)
+                    dp[i][j] = max(dp[i][j], dp[i-zeros][j-ones] + 1)
+        return dp[m][n]
 
 if __name__ == '__main__':
     object = Solution()
