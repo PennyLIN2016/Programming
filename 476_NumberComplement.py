@@ -20,9 +20,12 @@ class Solution(object):
     def findComplement(self, num):
         #Runtime: 8 ms, faster than 97.45% of Python online submissions for Number Complement.
         #Memory Usage: 11.8 MB, less than 42.86% of Python online submissions for Number Complement.
+        # xor operator solution: Sets each bit to 1 if only one of two bits is 1: complement operator
         # bin(num)= 0b+ num in binary format : srting
         # ^ would not handle the leading zero of a number.
         print bin(num)
+        # remove '0b' two char: len(bin(num)) - 2)
+        # get all 1 string : -1
         print bin((1 << (len(bin(num)) - 2)) - 1)
         return num ^ ((1 << (len(bin(num)) - 2)) - 1)
 
