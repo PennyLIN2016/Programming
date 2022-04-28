@@ -26,7 +26,22 @@ class Solution(object):
         print bin((1 << (len(bin(num)) - 2)) - 1)
         return num ^ ((1 << (len(bin(num)) - 2)) - 1)
 
+    def findComplement(self, num: int) -> int:
+        # Runtime: 34 ms, faster than 71.90% of Python3 online submissions for Number Complement.
+        # Memory Usage: 13.9 MB, less than 54.03% of Python3 online submissions for Number Complement.
+        # time: o(1) < 32 space: o(1)
+        base = 0
+        res = 0
+        while num > 0:
+            print('num: {} bit {}'.format(num, num & 1))
+            if not(num & 1):
+                res += 1 << base
+                print('res-{}'.format(res))
+            num = num >> 1
+            base += 1
+            print('res-{}'.format(res))
 
+        return res
 
 if __name__ == '__main__':
     object = Solution()
