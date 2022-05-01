@@ -41,6 +41,55 @@ class Solution(object):
             res.append(s[i:i+K])
         return "-".join(res)
 
+        def licenseKeyFormatting1(self, s: str, k: int) -> str:
+        # misunderstanding with the question:
+        # In this solution, keep the first frag without dash if the len(frag) < k
+        # the question is to split the chars (without dash) in to k-length flags,
+        # if the length of the chars mods k is not zero, keep the extra ones in the first frag.
+        temp = s.upper().split('-')
+        res, left = '', []
+        for i in range(len(temp)):
+            if temp[i] == '':
+                continue
+            if len(temp[i]) <= k:
+                res = temp[i]
+                if i == len(temp)-1:
+                    left = ''
+                else:
+                    left = ''.join(temp[i+1:])
+            else:
+                res = temp[i][:k]
+                if i == len(temp) - 1:
+                    left = ''.join([temp[i][k:]])
+                else:
+                    left = ''.join([temp[i][k:]] + temp[i:])
+            break
+        print('left- {} res: {}'.format(left, res))
+        if left == '':
+            return res
+        start = 0
+        while start + k -1 < len(left):
+            res += '-' + left[start:start + k]
+            start += k
+        if start < len(left) - 1:
+            res += '-' + left[start:]
+        return res
+
+    def licenseKeyFormatting(self, s: str, k: int) -> str:
+        # Runtime: 60 ms, faster than 68.59% of Python3 online submissions for License Key Formatting.
+        # Memory Usage: 14.6 MB, less than 47.51% of Python3 online submissions for License Key Formatting.
+        # time: o(n)
+        res=[]
+        tmp= ''.join(s.upper().split('-'))
+        print('tmp: {}'.format(tmp))
+        l = len(tmp)
+        if l % k != 0:
+            res.append(tmp[:l%k])
+        print('res: {}'.format(res))
+        for i in range(int(l/k)):
+            res.append(tmp[l%k + i * k: l%k + (i+1)*k])
+        print('res2- {}'.format(res))
+        return '-'.join(res)
 
 
 if __name__ == '__main__':
