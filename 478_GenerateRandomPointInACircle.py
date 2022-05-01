@@ -1,31 +1,26 @@
 import math
 import random
-class Solution(object):
-#Runtime: 132 ms, faster than 90.73% of Python online submissions for Generate Random Point in a Circle.
-#Memory Usage: 22.6 MB, less than 25.00% of Python online submissions for Generate Random Point in a Circle.
-    def __init__(self, radius, x_center, y_center):
-        """
-        :type radius: float
-        :type x_center: float
-        :type y_center: float
-        """
-        self.r=radius
-        self.x=x_center
-        self.y=y_center
+class Solution:
+    # Runtime: 158 ms, faster than 78.21% of Python3 online submissions for Generate Random Point in a Circle.
+    # Memory Usage: 24.2 MB, less than 43.02% of Python3 online submissions for Generate Random Point in a Circle.
+    # math solution : time: 0(1)  space: o(1) 
 
+    def __init__(self, radius: float, x_center: float, y_center: float):
+        self.r = radius
+        self.x = x_center
+        self.y = y_center
 
-    def randPoint(self):
-        """
-        :rtype: List[float]
-        """
-
-        # get a random radius, make sure the uniform random for circle point. not the uniform random between [0,radium]
-        rr=math.sqrt(random.random())*self.r
-        # get a uniform random alpha
-        alpha= random.random()*2*3.141592653
-        rx=self.x+rr*math.cos(alpha)
-        ry=self.y+rr*math.sin(alpha)
-        return [rx,ry]
+    def randPoint(self) -> list[float]:
+        # a random distance to the centre within the whole circle
+        # the sqrt() is to make up the offset from random.random()* self.r: more points are close to the centerac
+        # random.random()* self.r: more points are close to the center : becaue the random is besed on r
+        # cirecle area is based on r**2, so use sqrt() to make up the difference.
+        seed = math.sqrt(random.random()) * self.r
+        # a random radian: a random point in the circle perimeter
+        radian = random.random() * 2 * math.pi
+        x = self.x + seed * math.cos(radian)
+        y = self.y + seed * math.sin(radian)
+        return [x, y]
 
 
 
