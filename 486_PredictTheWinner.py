@@ -42,6 +42,43 @@ class Solution(object):
             for j in range(i+1,len(nums)):
                 dp[j]=max(nums[i]-dp[j],nums[j]-dp[j-1])
         return dp[-1]>=0
+    
+    
+   def PredictTheWinner(self, nums: list[int]) -> bool:
+        # Runtime: 147 ms, faster than 20.39% of Python3 online submissions for Predict the Winner.
+        # Memory Usage: 13.9 MB, less than 58.68% of Python3 online submissions for Predict the Winner.
+        # dp- resursion solution: time: o()
+        def dfs(start, end, p1, p2):
+            print('start: {} end: {} p1:{} p2:{}'.format(start, end, p1, p2))
+            if start > end:
+                print('return 1: {}'.format(True if sum(p1) >= sum(p2) else False))
+                if sum(p1) > sum(p2):
+                    return 1
+                elif sum(p1) == sum(p2):
+                    return 0
+                else:
+                    return -1
+            p1.append(nums[start])
+            res = dfs(start+1, end, p2, p1)
+            if res == -1:
+                p1.pop()
+                print('return 2: True')
+                return 1
+            elif res == 0:
+                p1.pop()
+                return 0
+            p1.pop()
+            print('------1---p1: {} p2: {}'.format(p1, p2))
+
+            p1.append(nums[end])
+            res = dfs(start, end-1, p2, p1)
+            p1.pop()
+            print('return 4: false')
+            return res * -1
+
+        player1 = []
+        player2 = []
+        return dfs(0, len(nums)-1, player1, player2) in [0, 1]
 
 if __name__ == '__main__':
     object = Solution()
