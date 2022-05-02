@@ -14,8 +14,8 @@ class Solution(object):
             else:
                 res=max(l,res)
                 l=0
-        res=max(l,res)
-        return res
+        
+        return max(l,res)
 
 
 if __name__ == '__main__':
