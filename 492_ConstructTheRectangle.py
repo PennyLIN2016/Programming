@@ -11,6 +11,16 @@ class Solution(object):
             if area%w==0:
                 return [int(area/w),w]
 
+     def constructRectangle(self, area: int) -> list[int]:
+        # Runtime: 59 ms, faster than 35.10% of Python3 online submissions for Construct the Rectangle.
+        # Memory Usage: 13.9 MB, less than 9.32% of Python3 online submissions for Construct the Rectangle.
+        # force solution: time: o(lgn) space: o(1)
+        import math
+        w = int(math.sqrt(area))
+        while w > 0:
+            if area % w == 0:
+                return [int(area/w), w]
+            w -= 1
 
 
 
