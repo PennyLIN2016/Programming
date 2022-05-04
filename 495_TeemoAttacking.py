@@ -17,6 +17,25 @@ class Solution(object):
                 res+=value-pre
             pre=value
         return res
+    
+    def findPoisonedDuration(self, timeSeries: list[int], duration: int) -> int:
+        # Runtime: 382 ms, faster than 37.47% of Python3 online submissions for Teemo Attacking.
+        # Memory Usage: 15.6 MB, less than 12.23% of Python3 online submissions for Teemo Attacking.
+        # brutal solution: time: o(n) space: o(1)
+        if duration == 0:
+            return 0
+        res = 0
+        # v can be 0
+        end = -1
+        for v in timeSeries:
+            print('before: res: {} end: {} v:{}'.format(res, end, v))
+            if v > end:
+                res += duration
+            else:
+                res += duration - (end - v + 1)
+            end = v + duration - 1
+            print('after: res: {} end: {}'.format(res, end))
+        return res
 
 
 if __name__ == '__main__':
