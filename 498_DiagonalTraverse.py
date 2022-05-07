@@ -49,6 +49,40 @@ class Solution(object):
                 col+=1
                 row-=1
         return res
+    
+ def findDiagonalOrder(self, mat: list[list[int]]) -> list[int]:
+        # Runtime: 280 ms, faster than 39.03% of Python3 online submissions for Diagonal Traverse.
+        # Memory Usage: 17.9 MB, less than 37.18% of Python3 online submissions for Diagonal Traverse.
+        # time: o(n) space: 0(n)
+        x, y, dir = 0, 0, 1
+        m, n = len(mat), len(mat[0])
+        res = []
+        for _ in range(m*n):
+            res.append(mat[x][y])
+            # inside elements
+            if dir > 0:
+                i, j = x-1, y+1
+            else:
+                i, j = x+1, y-1
+            if 0<=i<m and 0<=j<n:
+                x, y = i, j
+            else:
+                if dir >0:
+                    # right side up
+                    if y+1 < n:
+                        y += 1
+                    # top side up
+                    else:
+                        x += 1
+                else:
+                    # left down
+                    if x+1 < m:
+                        x += 1
+                    # bottom down
+                    else:
+                        y += 1
+                dir *= -1
+        return res
 
 if __name__ == '__main__':
     object = Solution()
