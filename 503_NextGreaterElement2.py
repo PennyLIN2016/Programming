@@ -36,7 +36,27 @@ class Solution(object):
                 res[s.pop()]=nums[i]
             s.append(i)
         return res
+    def nextGreaterElements(self, nums: list[int]) -> list[int]:
+        # Runtime: 354 ms, faster than 31.21% of Python3 online submissions for Next Greater Element II.
+        # Memory Usage: 16.9 MB, less than 5.32% of Python3 online submissions for Next Greater Element II.
+        # extend the solution of 496_NextGreaterElement1.py
+        # time: o(n) space:o(n)
+        res = []
+        stack = []
+        d = {}
+        nums1 = nums + nums[:len(nums)-1]
+        print('nums1: {} nums: {}'.format(nums1, nums))
+        for i, v in enumerate(nums1):
+            print('i: {} v: {}'.format(i, v))
+            while len(stack) and nums1[stack[-1]] < v:
+                d[stack.pop()] = v
+            stack.append(i)
+            print('stack: {} d: {}'.format(stack, d))
 
+        # time: o(n)
+        for j in range(len(nums)):
+            res.append(d.get(j, -1))
+        return res
 
 
 if __name__ == '__main__':
