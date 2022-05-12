@@ -30,6 +30,28 @@ class Solution(object):
             else:
                 res.append(str(rank[value]))
         return res
+    
+   def findRelativeRanks(self, score: list[int]) -> list[str]:
+        # Runtime: 73 ms, faster than 86.54% of Python3 online submissions for Relative Ranks.
+        # Memory Usage: 15.2 MB, less than 60.10% of Python3 online submissions for Relative Ranks.
+        # time: o(nlgn) space: o(n)
+        order = score[:]
+        score.sort(reverse=True)
+        d = {}
+        for i, v in enumerate(score):
+            d[v] = i
+        #print('d: {}'.format(d))
+        res = []
+        for v in order:
+            if d[v] == 0:
+                res.append("Gold Medal")
+            elif d[v] == 1:
+                res.append("Silver Medal")
+            elif d[v] == 2:
+                res.append("Bronze Medal")
+            else:
+                res.append(str(d[v]+1))
+        return res
 
 if __name__ == '__main__':
     object = Solution()
