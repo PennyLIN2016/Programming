@@ -13,7 +13,19 @@ class Solution(object):
             if num%factor==0:
                 s+= factor+num/factor
         return s==num
-
+    def checkPerfectNumber(self, num: int) -> bool:
+        # Runtime: 45 ms, faster than 69.52% of Python3 online submissions for Perfect Number.
+        # Memory Usage: 13.8 MB, less than 97.06% of Python3 online submissions for Perfect Number.
+        # time: o(lgn) space: o(1) python3.9
+        import math
+        if num == 1: return False
+        divs = 1
+        for i in range(2, int(math.sqrt(num))+1):
+            if num % i == 0:
+                divs += i + int(num/i)
+                if divs > num:
+                    return False
+        return divs == num
 
 if __name__ == '__main__':
     object = Solution()
