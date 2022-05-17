@@ -48,6 +48,24 @@ class Solution(object):
                     child.append(level)
         return child[-1][0]
 
+    def findBottomLeftValue(self, root: TreeNode) -> int:
+        #Runtime: 59 ms, faster than 52.25% of Python3 online submissions for Find Bottom Left Tree Value.
+        # Memory Usage: 16.3 MB, less than 60.41% of Python3 online submissions for Find Bottom Left Tree Value.
+        # dfs+ wfs: time: o(n) space: (n)
+        stack = [root]
+        while stack:
+            rowStack = []
+            for v in stack:
+                print('1-{}'.format(v.val))
+                if v.left:
+                    rowStack.append(v.left)
+                    print('left-{}'.format(v.left.val))
+                if v.right:
+                    rowStack.append(v.right)
+                    print('right-{}'.format(v.right.val))
+            if rowStack == []:
+                return stack[0].val
+            stack = rowStack
 
 
 if __name__ == '__main__':
