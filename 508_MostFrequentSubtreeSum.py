@@ -30,6 +30,29 @@ class Solution(object):
         tmp= root.val+self.sumSubtree(root.right,freq)+self.sumSubtree(root.left,freq)
         freq[tmp]+=1
         return tmp
+    # Runtime: 62 ms, faster than 65.38% of Python3 online submissions for Most Frequent Subtree Sum.
+    # Memory Usage: 17.4 MB, less than 76.12% of Python3 online submissions for Most Frequent Subtree Sum.
+    # time: o(n) space: o(n)
+    def findFrequentTreeSum(self, root: TreeNode) -> list[int]:
+        def getSum(node):
+            if not node:
+                return 0
+            res = node.val
+            if node.left:
+                res += getSum(node.left)
+            if node.right:
+                res += getSum(node.right)
+            freDict[res] += 1
+            return res
+        if not root: return []
+        freDict = collections.defaultdict(int)
+        getSum(root)
+        target = max(freDict.values())
+        ans = []
+        for k, v in freDict.items():
+            if v == target:
+                ans.append(k)
+        return ans
 
 if __name__ == '__main__':
     object = Solution()
