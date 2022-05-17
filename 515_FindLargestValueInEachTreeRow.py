@@ -29,7 +29,27 @@ class Solution(object):
                 res.append(cur)
             s=tmp
         return res
-
+    def largestValues(self, root: TreeNode) -> list[int]:
+        # Runtime: 57 ms, faster than 65.84% of Python3 online submissions for Find Largest Value in Each Tree Row.
+        # Memory Usage: 16.3 MB, less than 68.32% of Python3 online submissions for Find Largest Value in Each Tree Row.
+        # solution: time: o(n) space: o(n)
+        # follow up of 513
+        if not root: return []
+        stack = [root]
+        res = []
+        while stack:
+            rowMax = float('-inf')
+            rowStack = []
+            for v in stack:
+                rowMax = max(rowMax, v.val)
+                if v.left:
+                    rowStack.append(v.left)
+                if v.right:
+                    rowStack.append(v.right)
+            res.append(rowMax)
+            if not rowStack:
+                return res
+            stack = rowStack
 
 if __name__ == '__main__':
     object = Solution()
