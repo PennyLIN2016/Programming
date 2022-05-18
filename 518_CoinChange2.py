@@ -48,6 +48,19 @@ class Solution(object):
                 if value<=i:
                     dp[i]+=dp[i-value]
         return dp[-1]
+    
+    def change(self, amount: int, coins: list[int]) -> int:
+        # Runtime: 242 ms, faster than 66.88% of Python3 online submissions for Coin Change 2.
+        # Memory Usage: 14 MB, less than 70.09% of Python3 online submissions for Coin Change 2.
+        # dp solution: time: o(n*m) space: o(m)
+        if min(coins) > amount: return 0
+        # dp[i] the return number for sum i: dp[0] = 1, 0 coin is also a matching
+        dp = [1] + [0] * amount
+        for v in coins:
+            for i in range(v, amount+1):
+                # dp[i] = Σdp[i - coins[j]]
+                dp[i] += dp[i-v]
+        return dp[-1]
 
 if __name__ == '__main__':
     object = Solution()
