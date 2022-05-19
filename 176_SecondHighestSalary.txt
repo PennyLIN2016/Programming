@@ -1,0 +1,47 @@
+# Write your MySQL query statement below
+# SQL schema
+"""
+Create table If Not Exists Employee (id int, salary int)
+Truncate table Employee
+insert into Employee (id, salary) values ('1', '100')
+insert into Employee (id, salary) values ('2', '200')
+insert into Employee (id, salary) values ('3', '300')
+"""
+# Write your MySQL query statement below
+# this solution failed at
+#{"headers":{"Employee":["id","salary"]},"rows":{"Employee":[[1,100]]}}
+# output:{"headers": ["SecondHighestSalary"], "values": []}
+# expected:{"headers":["SecondHighestSalary"],"values":[[null]]}
+# Null value problem
+SELECT DISTINCT
+    Salary AS SecondHighestSalary
+FROM
+    Employee
+ORDER BY Salary DESC
+LIMIT 1 OFFSET 1
+
+
+# solution2: fix the null value problem
+#Runtime: 200 ms, faster than 76.89% of MySQL online submissions for Second Highest Salary.
+#Memory Usage: 0B, less than 100.00% of MySQL online submissions for Second Highest Salary.
+SELECT
+    (SELECT DISTINCT
+        salary
+     FROM
+        Employee
+     ORDER BY salary DESC
+     LIMIT 1 OFFSET 1
+    )AS SecondHighestSalary
+
+solution3:
+#Runtime: 221 ms, faster than 59.84% of MySQL online submissions for Second Highest Salary.
+#Memory Usage: 0B, less than 100.00% of MySQL online submissions for Second Highest Salary.
+SELECT
+    IFNULL(
+        (SELECT DISTINCT
+            salary
+         FROM Employee
+         ORDER BY salary DESC
+         LIMIT 1 OFFSET 1
+        )
+    , NULL) AS SecondHighestSalary
