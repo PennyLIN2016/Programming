@@ -1,0 +1,37 @@
+# Write your MySQL query statement below
+# SQL schema
+"""
+Create table If Not Exists Logs (id int, num int)
+Truncate table Logs
+insert into Logs (id, num) values ('1', '1')
+insert into Logs (id, num) values ('2', '1')
+insert into Logs (id, num) values ('3', '1')
+insert into Logs (id, num) values ('4', '2')
+insert into Logs (id, num) values ('5', '1')
+insert into Logs (id, num) values ('6', '2')
+insert into Logs (id, num) values ('7', '2')
+"""
+# solution 1
+# Runtime: 471 ms, faster than 67.42% of MySQL online submissions for Consecutive Numbers.
+SELECT DISTINCT
+    T1.num AS ConsecutiveNums
+ FROM
+    Logs T1,
+    Logs T2,
+    Logs T3
+ WHERE
+    T1.id = T2.id-1 AND T2.id = T3.id-1
+    AND T1.num = T2.num AND T2.num = T3.num;
+
+# solution2
+#Runtime: 546 ms, faster than 39.22% of MySQL online submissions for Consecutive Numbers.
+SELECT DISTINCT
+    num AS ConsecutiveNums
+From(
+    SELECT
+        LAG(num) OVER() AS PRE,
+        num,
+        LEAD(num) OVER() AS NEXT
+    FROM Logs
+) triLogs
+WHERE PRE = num AND NEXT = num
