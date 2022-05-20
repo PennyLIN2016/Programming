@@ -30,7 +30,28 @@ class Solution(object):
         :rtype: None
         """
         self.fliped.clear()
+        
+class Solution1:
+    # timeout: 18 / 20 test cases passed.
+    def __init__(self, m: int, n: int):
+        self._m = m
+        self._n = n
+        self._zeroSet = set([i for i in range(m * n)])
 
+    def flip(self) -> list[int]:
+        import random
+        if len(self._zeroSet) == 0:
+            return None
+        i = random.randint(0, len(self._zeroSet)-1)
+        print('set: {} i: {}'.format(self._zeroSet, i))
+        v = list(self._zeroSet)[i]
+        self._zeroSet.remove(v)
+        c, r = divmod(v, self._m)
+        print('len: {} v: {} c: {} r: {}'.format(len(self._zeroSet), v, c, r))
+        return [r, c]
+
+    def reset(self) -> None:
+        self._zeroSet = set([i for i in range(self._m * self._n)])
 
 #Your Solution object will be instantiated and called as such:
 obj = Solution(n_rows, n_cols)
