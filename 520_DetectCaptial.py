@@ -18,7 +18,28 @@ class Solution(object):
             else:
                 return False
 
+    def detectCapitalUse(self, word: str) -> bool:
+        # Runtime: 32 ms, faster than 84.79% of Python3 online submissions for Detect Capital.
+        # Memory Usage: 13.9 MB, less than 54.30% of Python3 online submissions for Detect Capital.
+        # time: o(n) space: o(1)
+        if ord('A') <= ord(word[0]) <= ord('Z'):
+            start = 1
+        else:
+            start = 0
+        flag = None
+        for i in range(start, len(word)):
 
+            if not flag:
+                if ord('A') <= ord(word[i]) <= ord('Z'):
+                    flag = 'Upper'
+                else:
+                    flag = 'lower'
+            else:
+                if flag == 'Upper' and ord('a') <= ord(word[i]) <= ord('z'):
+                    return False
+                elif flag == 'lower' and ord('A') <= ord(word[i]) <= ord('Z'):
+                    return False
+        return True
 
 if __name__ == '__main__':
     object = Solution()
