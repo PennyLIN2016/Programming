@@ -1,0 +1,32 @@
+# Write your MySQL query statement below
+# SQL schema
+"""
+Create table If Not Exists Employee (id int, name varchar(255), salary int, managerId int)
+Truncate table Employee
+insert into Employee (id, name, salary, managerId) values ('1', 'Joe', '70000', '3')
+insert into Employee (id, name, salary, managerId) values ('2', 'Henry', '80000', '4')
+insert into Employee (id, name, salary, managerId) values ('3', 'Sam', '60000', 'None')
+insert into Employee (id, name, salary, managerId) values ('4', 'Max', '90000', 'None')
+"""
+# solution 1
+# Runtime: 406 ms, faster than 48.20% of MySQL online submissions for Employees Earning More Than Their Managers.
+SELECT
+    T1.name AS Employee
+ FROM
+    Employee T1,
+    Employee T2
+ WHERE
+    T1.managerId = T2.id
+    AND T1.salary > T2.salary;
+
+# solution 2
+# Runtime: 547 ms, faster than 19.83% of MySQL online submissions for Employees Earning More Than Their Managers.
+SELECT
+    T1.name AS Employee
+FROM
+    Employee AS T1 LEFT JOIN Employee AS T2
+ON
+    T1.managerId = T2.id
+WHERE
+    T1.salary > T2.salary;
+
