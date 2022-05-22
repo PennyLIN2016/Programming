@@ -1,0 +1,81 @@
+# Write your MySQL query statement below
+# SQL schema
+"""
+Create table If Not Exists Employee (id int, name varchar(255), salary int, departmentId int)
+Create table If Not Exists Department (id int, name varchar(255))
+Truncate table Employee
+insert into Employee (id, name, salary, departmentId) values ('1', 'Joe', '70000', '1')
+insert into Employee (id, name, salary, departmentId) values ('2', 'Jim', '90000', '1')
+insert into Employee (id, name, salary, departmentId) values ('3', 'Henry', '80000', '2')
+insert into Employee (id, name, salary, departmentId) values ('4', 'Sam', '60000', '2')
+insert into Employee (id, name, salary, departmentId) values ('5', 'Max', '90000', '1')
+Truncate table Department
+insert into Department (id, name) values ('1', 'IT')
+insert into Department (id, name) values ('2', 'Sales')
+"""
+# solution 1
+# Runtime: 539 ms, faster than 81.70% of MySQL online submissions for Department Highest Salary.
+SELECT
+    # return fields
+    T2.name AS Department,
+    T1.name AS Employee,
+    T1.salary AS Salary
+From
+    Employee AS T1 ,
+    Department AS T2,
+    # generate a max salary table
+    (SELECT
+        T4.id AS ID,
+        MAX(T3.salary) AS Salary
+    FROM
+        Employee AS T3 ,
+        Department AS T4
+    WHERE
+        T4.id = T3.departmentId
+    GROUP BY T4.id) AS T5
+WHERE
+    # department id match
+    T1.departmentId = T2.id and
+    # find the max salary by departmentId
+    T2.id = T5.ID AND
+    # find all matching salary item. allow repeated items.
+    T5.Salary = T1.salary
+
+# solution 2: suitable for postgreSql
+SELECT
+    # return fields
+    T1.name AS Department,
+    TEMP.EmName AS Employee,
+    TEMP.EmSalary AS Salary
+From
+    Department AS T1 ,
+    (SELECT
+        T2.departmentId AS DeId,
+        T2.name AS EmName,
+        T2.salary AS EmSalary,
+        rank() over (partition by departmentId ORDER BY salary DESC) AS rank
+     FROM
+        Employee as T2
+    ) AS TEMP
+WHERE T1.id = TEMP.DeId AND TEMP.rank = 1
+
+# solution 3:
+# Runtime: 563 ms, faster than 74.65% of MySQL online submissions for Department Highest Salary.
+SELECT
+    # return fields
+    T1.name AS Department,
+    T2.name AS Employee,
+    T2.salary AS Salary
+From
+    Department AS T1 JOIN Employee AS T2
+ON T2.DepartmentId  = T1.Id
+
+WHERE
+    (DepartmentId, salary) IN
+    (
+        SELECT
+            DepartmentId, MAX(salary)
+        FROM
+            Employee
+        GROUP BY DepartmentId
+    );

@@ -1,0 +1,43 @@
+# Write your MySQL query statement below
+# SQL schema
+"""
+Create table If Not Exists Employee (id int, name varchar(255), salary int, departmentId int)
+Create table If Not Exists Department (id int, name varchar(255))
+Truncate table Employee
+insert into Employee (id, name, salary, departmentId) values ('1', 'Joe', '85000', '1')
+insert into Employee (id, name, salary, departmentId) values ('2', 'Henry', '80000', '2')
+insert into Employee (id, name, salary, departmentId) values ('3', 'Sam', '60000', '2')
+insert into Employee (id, name, salary, departmentId) values ('4', 'Max', '90000', '1')
+insert into Employee (id, name, salary, departmentId) values ('5', 'Janet', '69000', '1')
+insert into Employee (id, name, salary, departmentId) values ('6', 'Randy', '85000', '1')
+insert into Employee (id, name, salary, departmentId) values ('7', 'Will', '70000', '1')
+Truncate table Department
+insert into Department (id, name) values ('1', 'IT')
+insert into Department (id, name) values ('2', 'Sales')
+"""
+# solution 1
+# Runtime: 1184 ms, faster than 20.71% of MySQL online submissions for Department Top Three Salaries.
+SELECT
+    # return field
+    D1.name AS Department,
+    E1.name AS Employee,
+    E1.salary AS Salary
+FROM
+    Department D1,
+    Employee E1
+WHERE
+    # link the items
+    D1.id = E1.departmentId AND
+    3 > (
+    SELECT
+        # MySQL COUNT(DISTINCT) function returns a count of number rows with different non-NULL expr values.
+        COUNT(DISTINCT(E2.salary))
+    FROM
+       Employee E2
+    WHERE
+        # top three : count() < 3: 0, 1, 2
+        E2.salary > E1.salary and
+        # Group by departmentId
+        E2.departmentId = E1.departmentId
+    )
+    ;
