@@ -15,6 +15,12 @@ class Solution(object):
             return len(a)
         else:
             return len(b)
+       
+     def findLUSlength(self, a: str, b: str) -> int:
+        # Runtime: 37 ms, faster than 64.62% of Python3 online submissions for Longest Uncommon Subsequence I.
+        # Memory Usage: 13.8 MB, less than 61.27% of Python3 online submissions for Longest Uncommon Subsequence I.
+        if a == b : return -1
+        return max(len(a), len(b))
 
 
 
