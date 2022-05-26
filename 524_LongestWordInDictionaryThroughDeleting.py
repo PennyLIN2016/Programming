@@ -28,7 +28,27 @@ class Solution(object):
         return ""
 
 
+    def findLongestWord(self, s: str, dictionary: list[str]) -> str:
+        # Runtime: 648 ms, faster than 42.53% of Python3 online submissions for Longest Word in Dictionary through Deleting.
+        # Memory Usage: 16.2 MB, less than 99.37% of Python3 online submissions for Longest Word in Dictionary through Deleting.
+        # time: O(n*m) space: o(1)
+        def findWord(strCur):
+            pos = 0
+            for char in s:
+                if char == strCur[pos]:
+                    pos += 1
+                if pos == len(strCur):
+                    return True
+            return False
+        res = ''
+        for v in dictionary:
+            if findWord(v):
+                if len(v) > len(res):
+                    res = v
+                elif len(v) == len(res) and v < res:
+                    res = v
 
+        return res
 
 
 
