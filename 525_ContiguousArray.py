@@ -26,7 +26,38 @@ class Solution(object):
                 dmap[curSum]=i
         return res
 
+    def findMaxLength(self, nums: list[int]) -> int:
+        # timeout: 25 / 564 test cases passed.
+        for i, v in enumerate(nums):
+            if v == 0:
+                nums[i] = -1
+        res = 0
+        for i in range(len(nums), -1, -1):
+            for j in range(i, len(nums)):
+                print('i: {} j: {}'.format(i, j))
+                if i == j:
+                    continue
+                if sum(nums[i:j+1]) == 0:
+                    res = max(j-i+1, res)
+        return res
 
+    def findMaxLength(self, nums: list[int]) -> int:
+        # Runtime: 886 ms, faster than 87.29% of Python3 online submissions for Contiguous Array.
+        # Memory Usage: 19.5 MB, less than 40.04% of Python3 online submissions for Contiguous Array.
+        # similar solution to question 523
+        # time: o(n) space: o(n)
+        res = 0
+        count = 0
+        # dicLen[i] the extre 1 of nums[:i+1]
+        dicLen = {0: 0}
+        for i, v in enumerate(nums, 1):
+            count += 1 if v == 1 else -1
+            # Match the subArray:[:i+1] - [:k] dicLen(count) = k
+            if count in dicLen:
+                res = max(res, i - dicLen[count])
+            else:
+                dicLen[count] = i
+        return res
 
 
 if __name__ == '__main__':
