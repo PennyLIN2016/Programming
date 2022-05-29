@@ -40,7 +40,26 @@ class Solution(object):
 
         return arrageList(1,range(1,N+1))
 
+   def countArrangement(self, n: int) -> int:
+        # Runtime: 1416 ms, faster than 54.37% of Python3 online submissions for Beautiful Arrangement.
+        # Memory Usage: 13.8 MB, less than 98.76% of Python3 online submissions for Beautiful Arrangement.
+        # time
+        def find(cur, pos):
+            # all postions match
+            if pos > cur:
+                res[0] += 1
+                return
+            for i in range(1, cur+1):
+                # matching 
+                if i not in visited and (i%pos == 0 or pos%i==0):
+                    visited.add(i)
+                    find(cur, pos+1)
+                    visited.remove(i)
 
+        visited = set()
+        res = [0]
+        find(n,1)
+        return res[0]
 if __name__ == '__main__':
     object = Solution()
     s = 2
