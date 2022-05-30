@@ -27,7 +27,28 @@ class Solution(object):
             minD = min(minD,value-r[i-1])
         return minD
 
+    def getMinimumDifference(self, root: [TreeNode]) -> int:
+        # Runtime: 67 ms, faster than 65.72% of Python3 online submissions for Minimum Absolute Difference in BST.
+        # Memory Usage: 16.3 MB, less than 22.77% of Python3 online submissions for Minimum Absolute Difference in BST.
+        # time: o(n) space: o(n)
+        def findPath(node):
+            if not node:
+                return
+            path = [node.val]
+            if node.left:
+                path = findPath(node.left) + path
+            if node.right:
+                path = path + findPath(node.right)
+            return path
 
+        treeList = findPath(root)
+        print(treeList)
+
+        res = abs(treeList[1] - treeList[0])
+        for i in range(len(treeList)):
+            res = min(res, abs(treeList[i] - treeList[i - 1]))
+
+        return res
 
 
 if __name__ == '__main__':
