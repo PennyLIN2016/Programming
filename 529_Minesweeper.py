@@ -33,6 +33,8 @@ class Solution(object):
             board[row][col]='B'
             for i in xrange(-1,2):
                 for j in xrange(-1,2):
+                    
+                    
                     if i==0 and j==0:
                         continue
                     r,c = row+i,col+j
@@ -40,6 +42,38 @@ class Solution(object):
                         continue
                     if board[r][c]=='E':
                         self.updateBoard(board,(r,c))
+        return board
+class Solution:
+    # Runtime: 312 ms, faster than 21.14% of Python3 online submissions for Minesweeper.
+    # Memory Usage: 17 MB, less than 35.84% of Python3 online submissions for Minesweeper.
+    # time: O(n*m) space: o(1)
+    def updateBoard(self, board: list[list[str]], click: list[int]) -> list[list[str]]:
+        def clickBoard(pos):
+            x, y = pos[0], pos[1]
+            if board[x][y] == 'M':
+                board[x][y] = 'X'
+                return
+            if board[x][y] in visited:
+                return
+            cur = 0
+            for v in dirs:
+                x1, y1 = x + v[0], y + v[1]
+                if not(0 <= x1 < len(board)) or not(0 <= y1 < len(board[0])):
+                    continue
+                if board[x1][y1] == 'M':
+                    cur += 1
+            board[x][y] = str(cur) if cur != 0 else 'B'
+            if cur > 0:
+                return
+            for v2 in dirs:
+                x2, y2 = x + v2[0], y + v2[1]
+                if 0 <= x2 < len(board) and 0 <= y2 < len(board[0]):
+                    clickBoard([x2,y2])
+
+        dirs = [[-1,-1] ,[-1,0], [-1,1], [0,-1], [0,1], [1,-1],[1,0],[1,1]]
+        visited = set([str(i) for i in range(1, 9)])
+        visited.add('B')
+        clickBoard(click)
         return board
 
 
