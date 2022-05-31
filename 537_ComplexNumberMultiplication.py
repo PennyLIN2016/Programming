@@ -25,7 +25,29 @@ class Solution(object):
         res+='i'
         return res
 
+    def complexNumberMultiply(self, a, b):
+        """
+        :type a: str
+        :type b: str
+        :rtype: str
+        """
+        # Runtime: 7 ms, faster than 100.00% of Python online submissions for Complex Number Multiplication.
+        # Memory Usage: 13.6 MB, less than 22.22% of Python online submissions for Complex Number Multiplication.
+        # time: o(1) spac: o(1)
+        def getNumbers(numStr):
+            try:
+                nums = numStr.split('+')
+                realPart, iPart = int(nums[0]), int(nums[1][:-1])
+                return realPart, iPart
+            except:
+                print('Wrong number string: {}'.format(numStr))
+                return None
 
+        x1, y1 = getNumbers(a)
+        x2, y2 = getNumbers(b)
+        x = x1 * x2 - y1 * y2
+        y = x1 * y2 + x2 * y1
+        return '{}+{}i'.format(x, y)
 
 
 
