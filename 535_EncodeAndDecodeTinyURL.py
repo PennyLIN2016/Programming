@@ -25,6 +25,31 @@ class Codec:
         if index not in self.dmap:
             return ""
         return self.dmap[index]
+    
+    
+        # the question is not clear. no mapping rule described
+    def __init__(self):
+        self._dict = {}
+        self.key = 0
+
+    def encode(self, longUrl):
+        """Encodes a URL to a shortened URL.
+
+        :type longUrl: str
+        :rtype: str
+        """
+        txt = "tinyurl" + str(self.key)
+        self._dict[txt] = longUrl
+        self.key += 1
+        return txt
+
+    def decode(self, shortUrl):
+        """Decodes a shortened URL to its original URL.
+
+        :type shortUrl: str
+        :rtype: str
+        """
+        return self._dict[shortUrl]
         
 
 # Your Codec object will be instantiated and called as such:
