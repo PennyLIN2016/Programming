@@ -37,6 +37,26 @@ class Solution(object):
             if value+k in nums:
                 res+=1
         return res
+    
+        def findPairs(self, nums: list[int], k: int) -> int:
+        #Runtime: 132 ms, faster than 32.33% of Python3 online submissions for K-diff Pairs in an Array.
+        #Memory Usage: 16.3 MB, less than 22.36% of Python3 online submissions for K-diff Pairs in an Array.
+        # two point solution: time: o(nlgn) space: o(n)
+        pairs = set()
+        nums.sort()
+        j = 0
+        for i in range(len(nums)-1):
+            if i == j:
+                j = i+1
+            while j < len(nums) and nums[j]-nums[i] < k:
+                j += 1
+            if j == len(nums):
+                break
+            if nums[j]-nums[i] == k and (nums[i], nums[j]) not in pairs:
+                pairs.add((nums[i], nums[j]))
+        return len(pairs)
+
+
 
 if __name__ == '__main__':
     object = Solution()
