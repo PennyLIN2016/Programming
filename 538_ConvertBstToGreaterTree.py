@@ -75,6 +75,21 @@ class Solution(object):
         getSum(root)
         return root
 
+    def convertBST(self, root: [TreeNode]) -> [TreeNode]:
+        # Runtime: 137 ms, faster than 8.87% of Python3 online submissions for Convert BST to Greater Tree.
+        # Memory Usage: 16.6 MB, less than 96.45% of Python3 online submissions for Convert BST to Greater Tree.
+        # dfs solution: time: O(n) space:(n)
+        def refreshTree(node):
+            nonlocal curSum
+            if not node:
+                return
+            refreshTree(node.right)
+            curSum += node.val
+            node.val = curSum
+            refreshTree(node.left)
+        curSum = 0
+        refreshTree(root)
+        return root
 
 
 
