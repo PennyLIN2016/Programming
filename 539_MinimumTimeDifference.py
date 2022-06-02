@@ -32,6 +32,29 @@ class Solution(object):
         print timePoints
         print zip(timePoints,timePoints[1:]+timePoints[:1])
         return min((y-x)%(24*60) for x,y in zip(timePoints,timePoints[1:]+timePoints[:1]))
+    
+    
+    #Runtime: 120 ms, faster than 31.46% of Python3 online submissions for Minimum Time Difference.
+    #Memory Usage: 17 MB, less than 70.61% of Python3 online submissions for Minimum Time Difference.
+    # time: o(n) space: O(1)
+    def findMinDifference(self, timePoints: list[str]) -> int:
+        def getMins(timeStr):
+            tmp = timeStr.split(':')
+            return int(tmp[0]) * 60 + int(tmp[1])
+
+        timePoints.sort()
+        diff = float('inf')
+        pre = getMins(timePoints[0])
+        for i in range(len(timePoints)):
+            if i == 0:
+                continue
+            if timePoints[i] == timePoints[i-1]:
+                return 0
+            t1 = getMins(timePoints[i])
+            diff = min(diff, t1 - pre)
+            pre = t1
+        lastDiff = (24*60 - pre) + getMins(timePoints[0])
+        return min(lastDiff, diff)
 
 
 
