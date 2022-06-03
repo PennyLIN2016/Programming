@@ -24,7 +24,25 @@ class Solution(object):
             if i == len(nums)-1:return nums[i]
             if nums[i]!=nums[i+1]:
                 return nums[i]
-
+            
+    def singleNonDuplicate(self, nums: list[int]) -> int:
+        # Runtime: 362 ms, faster than 5.65% of Python3 online submissions for Single Element in a Sorted Array.
+        # Memory Usage: 23.8 MB, less than 12.88% of Python3 online submissions for Single Element in a Sorted Array.
+        # time: o(lgn) space: o(1)
+        left, right = 0, len(nums) - 1
+        while left < right:
+            mid = (left + right) // 2
+            if nums[mid] != nums[mid-1] and nums[mid] != nums[mid+1]:
+                return nums[mid]
+            if mid % 2 == 0 and nums[mid] == nums[mid + 1]:
+               left = mid + 1
+            elif mid % 2 == 0 and nums[mid] == nums[mid - 1]:
+                right = mid - 1
+            elif mid % 2 == 1 and nums[mid] == nums[mid + 1]:
+                right = mid -1
+            else:
+                left = mid + 1
+        return nums[right]
 
 if __name__ == '__main__':
     object = Solution()
