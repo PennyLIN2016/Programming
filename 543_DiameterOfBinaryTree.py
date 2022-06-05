@@ -21,6 +21,29 @@ class Solution(object):
         r=getDepth(root.left)+getDepth(root.right)
         # for non-even tree
         return max(r,max(self.diameterOfBinaryTree(root.right),self.diameterOfBinaryTree(root.left)))
+     
+         def diameterOfBinaryTree(self, root: [TreeNode]) -> int:
+        # Runtime: 48 ms, faster than 84.89% of Python3 online submissions for Diameter of Binary Tree.
+        # Memory Usage: 16.4 MB, less than 42.23% of Python3 online submissions for Diameter of Binary Tree.
+        # dfs + post order travel
+        def getMaxDepth(node):
+            nonlocal dis
+            if not node:
+                return 0
+
+            r1 = getMaxDepth(node.left)
+            r2 = getMaxDepth(node.right)
+            # Update diameter
+            curDis = r1 + r2 + 1
+            dis = max(dis, curDis)
+            # return the depth of this node
+            return max(r1, r2) + 1
+
+        dis = float('-inf')
+        getMaxDepth(root)
+        # the dis= 1 if for root node
+        return dis-1  if dis != float('-inf') else 0
+     
 
 
 if __name__ == '__main__':
