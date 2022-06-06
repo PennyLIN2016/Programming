@@ -11,6 +11,19 @@ class Solution(object):
         nums=map(str,nums)
         if len(nums)<=2: return "/".join(nums)
         return nums[0]+'/('+"/".join(nums[1:])+')'
+    
+    
+     def optimalDivision(self, nums: list[int]) -> str:
+        # Runtime: 42 ms, faster than 57.71% of Python3 online submissions for Optimal Division.
+        # Memory Usage: 13.8 MB, less than 68.57% of Python3 online submissions for Optimal Division.
+        # time:o(n) space: o(1)
+        # It’s a math question, with the question case
+        # the result is nums[0]/nums[1] * (nums[2] * ...nums[-1])
+        # nums[0]/(nums[1]/nums[2]/.../nums[-1])
+        nums = list(map(str, nums))
+        if len(list(nums)) <= 2:
+            return '/'.join(nums)
+        return '{}/({})'.format(nums[0], '/'.join(nums[1:]))
 
 if __name__ == '__main__':
     object = Solution()
