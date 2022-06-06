@@ -20,8 +20,9 @@ class Solution(object):
         # It’s a math question, with the question case
         # the result is nums[0]/nums[1] * (nums[2] * ...nums[-1])
         # nums[0]/(nums[1]/nums[2]/.../nums[-1])
+        # in python 3 have to convert map to list, otherwise, syntax error.
         nums = list(map(str, nums))
-        if len(list(nums)) <= 2:
+        if len(nums) <= 2:
             return '/'.join(nums)
         return '{}/({})'.format(nums[0], '/'.join(nums[1:]))
 
