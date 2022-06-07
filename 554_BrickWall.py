@@ -23,7 +23,23 @@ class Solution(object):
             res=min(res,len(wall)-dp[key])
         return res
 
-
+    def leastBricks(self, wall: list[list[int]]) -> int:
+        # Runtime: 190 ms, faster than 86.68% of Python3 online submissions for Brick Wall.
+        # Memory Usage: 19 MB, less than 57.54% of Python3 online submissions for Brick Wall.
+        # time: o(len(wall) * len(bricks)) space: 0(len(wall) * len(bricks))
+        linePoints = {}
+        maxPoints = 0
+        for row in wall:
+            endSum = 0
+            for i, brick in enumerate(row):
+                if i != len(row) - 1:
+                    endSum += brick
+                    if endSum in linePoints:
+                        linePoints[endSum] += 1
+                    else:
+                        linePoints[endSum] = 1
+                    maxPoints = max(maxPoints, linePoints[endSum])
+        return len(wall) - maxPoints
 
 
 
