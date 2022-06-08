@@ -1,0 +1,40 @@
+# Write your MySQL query statement below
+# SQL schema
+"""
+Create table If Not Exists Tree (id int, p_id int)
+Truncate table Tree
+insert into Tree (id, p_id) values ('1', 'None')
+insert into Tree (id, p_id) values ('2', '1')
+insert into Tree (id, p_id) values ('3', '1')
+insert into Tree (id, p_id) values ('4', '2')
+insert into Tree (id, p_id) values ('5', '2')
+"""
+# Write your MySQL query statement below
+# Runtime: 481 ms, faster than 41.60% of MySQL online submissions for Tree Node.
+    (SELECT id, 'Root' as type
+    FROM Tree
+    where p_id is null)
+    UNION
+    (SELECT id, 'Leaf' as type
+    FROM Tree
+    where id NOT IN(
+        SELECT DISTINCT p_id
+        FROM Tree
+        WHERE p_id IS NOT null)
+        AND
+        p_id IS NOT null
+    )
+    UNION
+    (
+    SELECT id, 'Inner' AS type
+    FROM Tree
+    WHERE id In (
+            SELECT DISTINCT p_id
+            FROM Tree
+            WHERE p_id IS NOT NULL)
+          AND  p_id IS NOT NULL
+    )
+    ORDER BY id
+
+
+
