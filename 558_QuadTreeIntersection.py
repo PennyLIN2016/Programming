@@ -13,6 +13,7 @@ class Solution(object):
     #Runtime: 224 ms, faster than 89.36% of Python online submissions for Quad Tree Intersection.
     #Memory Usage: 13.7 MB, less than 16.67% of Python online submissions for Quad Tree Intersection.
     # google solution:
+    # can't pass on 09/06/2022 neither in python 2 or python 3.9
     def intersect(self, quadTree1, quadTree2):
         """
         :type quadTree1: Node
