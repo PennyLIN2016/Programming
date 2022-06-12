@@ -33,6 +33,27 @@ class Solution(object):
         #Runtime: 48 ms, faster than 71.15% of Python online submissions for Binary Tree Tilt.
         #Memory Usage: 14.5 MB, less than 100.00% of Python online submissions for Binary Tree Tilt.
         # google solution : use a static variable to save the return parameter.
+          
+          
+          
+   def findTilt(self, root: TreeNode) -> int:
+        #Runtime: 85 ms, faster than 44.75% of Python3 online submissions for Binary Tree Tilt.
+        # Memory Usage: 16.2 MB, less than 78.67% of Python3 online submissions for Binary Tree Tilt.
+        # dfs solution: time:o(n) space: o(n)
+        def dfs(node):
+            if not node:
+                return 0, 0
+            s1, s2, d1, d2 = 0, 0, 0, 0
+            if node.left:
+                s1, d1 = dfs(node.left)
+            if node.right:
+                s2, d2 = dfs(node.right)
+            s = node.val + s1 + s2
+            d = d1 + d2 + abs(s1-s2)
+            return s, d
+
+        _, sumDiff = dfs(root)
+        return sumDiff
         self.sums=0
         self.postorder(root)
         return self.sums
