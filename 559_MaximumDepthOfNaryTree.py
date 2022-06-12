@@ -2,6 +2,7 @@
 class Node(object):
      def __init__(self, val, children):
          self.val = val
+     # children : node list
          self.children= children
 class Solution(object):
     def maxDepth(self, root):
