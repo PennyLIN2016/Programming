@@ -17,6 +17,21 @@ class Solution(object):
                 curSum+=nums[j]
                 if curSum==k: res+=1
         return res
+    
+   def subarraySum(self, nums: list[int], k: int) -> int:
+        # force solution: timeout 72 / 92 test cases passed.
+        # time: o(n**2)
+        l = len(nums)
+        sumList = [0]
+        res = 0
+        for i in range(l):
+            sumList.append(sumList[-1] + nums[i])
+        print('sum-{}'.format(sumList))
+        for i in range(l+1):
+            for j in range(i+1, l+1):
+                if sumList[j] - sumList[i] == k:
+                    res += 1
+        return res
     def subarraySum(self, nums, k):
         """
         :type nums: List[int]
