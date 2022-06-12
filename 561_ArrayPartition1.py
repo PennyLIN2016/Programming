@@ -22,6 +22,7 @@ class Solution(object):
         #Memory Usage: 14 MB, less than 69.70% of Python online submissions for Array Partition I.
         # the same thought to the solution 1: simple syntax more efficient.
         nums.sort()
+        # efficent solution
         return sum(nums[::2])
 
 if __name__ == '__main__':
