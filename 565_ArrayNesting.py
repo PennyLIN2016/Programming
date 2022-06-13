@@ -42,6 +42,24 @@ class Solution(object):
             res=max(path,res)
         return res
 
+    def arrayNesting(self, nums: list[int]) -> int:
+        # Runtime: 1006 ms, faster than 79.34% of Python3 online submissions for Array Nesting.
+        # Memory Usage: 33.2 MB, less than 47.03% of Python3 online submissions for Array Nesting.
+        # time:o(n*n) space:o(n)
+        visited = set()
+        res = 0
+        for i in range(len(nums)):
+            if i in visited:
+                continue
+            visited.add(i)
+            cur = 1
+            pos = i
+            while nums[pos] != i:
+                cur += 1
+                visited.add(pos)
+                pos = nums[pos]
+            res = max(cur, res)
+        return res
 
 
 
