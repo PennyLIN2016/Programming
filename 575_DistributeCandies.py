@@ -29,7 +29,13 @@ class Solution(object):
         # Memory Usage: 13.5 MB, less than 66.67% of Python online submissions for Distribute Candies.
         # google solution: set(list[]) //2 integer division time :o(n) space: o(n)
         return min(len(set(candies)),len(candies)//2)
+   # python 3 soltion 
 
+        # Runtime: 884 ms, faster than 76.76% of Python3 online submissions for Distribute Candies.
+        # Memory Usage: 16.3 MB, less than 37.42% of Python3 online submissions for Distribute Candies.
+        # time: o(n) space: o(1)
+        types = set(candyType)
+        return min(len(candyType)//2, len(types))
 
 
 if __name__ == '__main__':
