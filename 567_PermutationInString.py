@@ -42,6 +42,33 @@ class Solution(object):
             right+=1
             left+=1
         return False
+    def checkInclusion(self, s1: str, s2: str) -> bool:
+        # Runtime: 149 ms, faster than 42.55% of Python3 online submissions for Permutation in String.
+        # Memory Usage: 14 MB, less than 67.25% of Python3 online submissions for Permutation in String.
+        # time: o(n)
+        l1, l2 = len(s1), len(s2)
+        print('l1: {} l2:{}'.format(l1, l2))
+        if l1 > l2:
+            return False
+        cnt1 = collections.Counter(s1)
+        print(s2[:l1])
+        cnt2 = collections.Counter(s2[:l1])
+        if cnt2 == cnt1:
+            return True
+        if l2 == 1:
+            return False
+        print('cnt1: {} cnt2: {}'.format(cnt1, cnt2))
+        for i in range(1, l2-l1+1):
+            #print('i: {} s2[i-1]: {} s2[i+l1]: {} s2[i:i+l1]: {}'.format(i, s2[i-1], s2[i+l1], s2[i:i+l1]))
+            if cnt2[s2[i-1]] == 1:
+                del cnt2[s2[i - 1]]
+            else:
+                cnt2[s2[i - 1]] -= 1
+            cnt2[s2[i+l1-1]] += 1
+            #print('cnt: {}'.format(cnt2))
+            if cnt1 == cnt2:
+                return True
+        return False
 
 
 
