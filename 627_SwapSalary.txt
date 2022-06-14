@@ -1,0 +1,27 @@
+# Write your MySQL query statement below
+# SQL schema
+"""
+Create table If Not Exists Salary (id int, name varchar(100), sex char(1), salary int)
+Truncate table Salary
+insert into Salary (id, name, sex, salary) values ('1', 'A', 'm', '2500')
+insert into Salary (id, name, sex, salary) values ('2', 'B', 'f', '1500')
+insert into Salary (id, name, sex, salary) values ('3', 'C', 'm', '5500')
+insert into Salary (id, name, sex, salary) values ('4', 'D', 'f', '500')
+"""
+# Write your MySQL query statement below
+# solution 1
+#Runtime: 342 ms, faster than 18.21% of MySQL online submissions for Swap Salary.
+
+UPDATE Salary
+SET
+    sex = CASE
+            WHEN sex = 'f' THEN 'm'
+            ELSE 'f'
+          END
+
+# solution 2
+# Runtime: 440 ms, faster than 7.63% of MySQL online submissions for Swap Salary.
+update salary
+set sex = if (sex='m', 'f', 'm')
+
+
