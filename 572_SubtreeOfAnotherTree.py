@@ -40,7 +40,23 @@ class Solution(object):
             q.append(cur.left)
             q.append(cur.right)
         return False
-
+## python 3 solution
+    def isSubtree(self, root: TreeNode, subRoot: TreeNode) -> bool:
+        # Runtime: 184 ms, faster than 40.70% of Python3 online submissions for Subtree of Another Tree.
+        # Memory Usage: 15.1 MB, less than 34.71% of Python3 online submissions for Subtree of Another Tree.
+        # dfs solution: time:o(n**2) space: o(1)
+        def compareTwoTree(node1, node2):
+            if not node1 and not node2:
+                return True
+            if (node1 and not node2) or (not node1 and node2):
+                return False
+            if node1.val != node2.val:
+                return False
+            return compareTwoTree(node1.left, node2.left) and compareTwoTree(node1.right, node2.right)
+        if compareTwoTree(root, subRoot):
+            return True
+        if not root: return False
+        return self.isSubtree(root.left, subRoot) or self.isSubtree(root.right, subRoot)
 
 if __name__ == '__main__':
     object = Solution()
