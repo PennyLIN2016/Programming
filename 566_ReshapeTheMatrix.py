@@ -17,7 +17,21 @@ class Solution(object):
                 count= i*m +j
                 res[int(count/c)][count%c]=nums[i][j]
         return res
-
+    def matrixReshape(self, mat: list[list[int]], r: int, c: int) -> list[list[int]]:
+        # Runtime: 85 ms, faster than 98.20% of Python3 online submissions for Reshape the Matrix.
+        # Memory Usage: 14.7 MB, less than 79.01% of Python3 online submissions for Reshape the Matrix.
+        # force solution: time: o(m*n) space: o(m*n)
+        m, n = len(mat), len(mat[0])
+        if (m == r and n == c) or m * n != r * c:
+            return mat
+        res = [[0] * c for _ in range(r)]
+        for i in range(m):
+            for j in range(n):
+                pos = i * n + j
+                x, y = divmod(pos, c)
+                #print('i: {} j:{} x: {} y: {} pos: {}'.format(i, j, x, y, pos))
+                res[x][y] = mat[i][j]
+        return res
 
 if __name__ == '__main__':
     object = Solution()
