@@ -39,6 +39,18 @@ class Solution(object):
             for i in range(len(node.children)-1,-1,-1):
                 stack.append(node.children[i])
         return res
+#######python 3 solution
+    def preorder(self, root: Node) -> list[int]:
+        # dfs solution:
+        # Runtime: 115 ms, faster than 5.01% of Python3 online submissions for N-ary Tree Preorder Traversal.
+        # Memory Usage: 16.1 MB, less than 65.43% of Python3 online submissions for N-ary Tree Preorder Traversal.
+        # time: o(n: number of nodes) space: o(n)
+        if not root:
+            return []
+        res = [root.val]
+        for n in root.children:
+            res += self.preorder(n)
+        return res
 
 
 
