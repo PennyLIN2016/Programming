@@ -19,7 +19,25 @@ class Solution(object):
                 else:
                     dp[i][j]=max(dp[i-1][j],dp[i][j-1])
         return dp[-1][-1]
-
+###### python 3 solution
+    def minDistance(self, word1: str, word2: str) -> int:
+        # LCS question: find the longest common serial and the answer = l - lcs
+        # dp solution
+        # Runtime: 367 ms, faster than 58.35% of Python3 online submissions for Delete Operation for Two Strings.
+        # Memory Usage: 16.1 MB, less than 63.70% of Python3 online submissions for Delete Operation for Two Strings.
+        # time: o(m*n) space: o(n*m)
+        m, n = len(word1), len(word2)
+        dp = [[0 for _ in range(n+1)] for _ in range(m+1)]
+        # dp[i][j]: the lcs of s1[:i+1] of s2[:j+1]
+        # two pos for two strings
+        for i in range(1, m+1):
+            for j in range(1, n+1):
+                if word1[i-1] == word2[j-1]:
+                    dp[i][j] = dp[i-1][j-1] + 1
+                else:
+                    dp[i][j] = max(dp[i-1][j], dp[i][j-1])
+        #dp[m][n] LCS
+        return n + m - 2 * dp[m][n]
 
 if __name__ == '__main__':
     object = Solution()
