@@ -36,7 +36,19 @@ class Solution(object):
             for value in node.children:
                 stack.append(value)
         return res[::-1]
+##########ptyhon 3 solution
 
+    def postorder(self, root: Node) -> list[int]:
+        # Runtime: 90 ms, faster than 22.03% of Python3 online submissions for N-ary Tree Postorder Traversal.
+        # Memory Usage: 16.2 MB, less than 48.40% of Python3 online submissions for N-ary Tree Postorder Traversal.
+        # recursion solution: time: o(n) space:o(n)
+        if not root:
+            return []
+        res = []
+        for v in root.children:
+            res += self.postorder(v)
+        res += [root.val]
+        return res
 
 
 
