@@ -28,6 +28,77 @@ class Solution1(object):
         if r<self.m-1:self.dfs(r+1,c,cur+1)
         if c>0:self.dfs(r,c-1,cur+1)
         if c<self.n-1:self.dfs(r,c+1,cur+1)
+            
+     #### python 3 solution
+        def findPaths1(self, m: int, n: int, maxMove: int, startRow: int, startColumn: int) -> int:
+        # this solution is for the path can't include repeated points.
+        def dfs(x, y, leftMoves):
+            print('x: {} y: {} leftMoves: {} visited: {}'.format(x, y, leftMoves, visited))
+            nonlocal res
+            if leftMoves < 0:
+                return
+            if x < 0 or x > m-1 or y < 0 or y > n-1:
+                res += 1
+                print('res: {}'.format(res))
+                return
+            for d in dirs:
+                xx, yy = d[0], d[1]
+                r, c = x + xx, y+ yy
+                if (r, c) in visited:
+                    continue
+                visited.add((r, c))
+                dfs(r, c, leftMoves-1)
+                visited.remove((r, c))
+
+        if maxMove == 0:
+            return 0
+        dirs = [(1, 0), (-1, 0), (0, 1), (0, -1)]
+        visited = set()
+        res = 0
+        dfs(startRow, startColumn, maxMove)
+        return res
+
+    def findPaths2(self, m: int, n: int, maxMove: int, startRow: int, startColumn: int) -> int:
+        # the path can include repeated points.
+        # timeout: 73 / 94 test cases passed.
+        def dfs(x, y, leftMoves):
+            nonlocal res
+            if leftMoves < 1:
+                return
+            for d in dirs:
+                r, c = x + d[0], y + d[1]
+                if r < 0 or c < 0 or r > m-1 or c > n-1:
+                    res += 1
+                    res = res%(1000000007)
+                else:
+                    dfs(r, c, leftMoves-1)
+
+        if maxMove == 0:
+            return 0
+        dirs = [(1, 0), (-1, 0), (0, 1), (0, -1)]
+        res = 0
+        dfs(startRow, startColumn, maxMove)
+        return res
+
+    def findPaths(self, m: int, n: int, maxMove: int, startRow: int, startColumn: int) -> int:
+        # Runtime: 131 ms, faster than 75.86% of Python3 online submissions for Out of Boundary Paths.
+        # Memory Usage: 19.3 MB, less than 37.36% of Python3 online submissions for Out of Boundary Paths.
+        # dfs + memorization: time: o(m*n) space: (m*n)
+        def dfs(x, y, leftMoves):
+            if leftMoves < 0:
+                return 0
+            if (x, y, leftMoves) in visited:
+                return visited[(x, y, leftMoves)]
+            if x < 0 or x > m-1 or y < 0 or y > n-1:
+                return 1
+            visited[(x, y, leftMoves)] = (dfs(x+1, y, leftMoves-1) + dfs(x-1, y, leftMoves-1) +\
+                                         dfs(x, y-1, leftMoves-1) + dfs(x, y+1, leftMoves-1))%moduleV
+            return visited[(x, y, leftMoves)]
+
+        visited = {}
+        moduleV = 1000000007
+        return dfs(startRow, startColumn, maxMove)
+
 
     def newPath(self,r,c):
         ans= 0
