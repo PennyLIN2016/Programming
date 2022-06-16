@@ -36,8 +36,8 @@ class Solution(object):
 
 ####python3 
     def findLHS(self, nums: list[int]) -> int:
-        #Runtime: 710 ms, faster than 7.18% of Python3 online submissions for Longest Harmonious Subsequence.
-        #Memory Usage: 20.6 MB, less than 6.95% of Python3 online submissions for Longest Harmonious Subsequence.
+        #Runtime: 421 ms, faster than 53.95% of Python3 online submissions for Longest Harmonious Subsequence.
+        #Memory Usage: 20.5 MB, less than 6.95% of Python3 online submissions for Longest Harmonious Subsequence.
         # time: o(n) space: o(n)
         import collections
         posDict = collections.defaultdict(list)
