@@ -35,7 +35,44 @@ class Solution(object):
         return 0 not in s and len(s)==2
 
 
+#############python3 
+    def validSquare1(self, p1: list[int], p2: list[int], p3: list[int], p4: list[int]) -> bool:
+        # Runtime: 32 ms, faster than 95.48% of Python3 online submissions for Valid Square.
+        # Memory Usage: 13.8 MB, less than 92.98% of Python3 online submissions for Valid Square.
+        # math solution: time: o(1) space: o(1)
+        import collections
+        import math
+        def distance(n1, n2):
+            return math.sqrt((n1[0]-n2[0])**2 + (n1[1]-n2[1])**2)
+        dis = [distance(p1, p2), distance(p1, p3), distance(p1, p4),
+                   distance(p2, p3), distance(p2, p4), distance(p3, p4)]
+        cnt = collections.Counter(dis)
+        if len(cnt) != 2:
+            return False
+        side, diag = -1, -1
+        print('cnt: {}'.format(cnt))
+        for k, v in cnt.items():
+            if v == 4 and side == -1:
+                side = k
+            elif v == 2 and diag == -1:
+                diag = k
+            else:
+                return False
+        print('2*(side ** 2): {} diag ** 2: {}'.format(int(2*(side ** 2)), int(diag ** 2)))
+        return round(2*(side ** 2)) == round(diag ** 2)
 
+    def validSquare(self, p1: list[int], p2: list[int], p3: list[int], p4: list[int]) -> bool:
+        # Runtime: 32 ms, faster than 95.48% of Python3 online submissions for Valid Square.
+        # Memory Usage: 13.8 MB, less than 92.98% of Python3 online submissions for Valid Square.
+        # improved math solution
+        import collections
+        import math
+        def distance(n1, n2):
+            return math.sqrt((n1[0]-n2[0])**2 + (n1[1]-n2[1])**2)
+        dis = [distance(p1, p2), distance(p1, p3), distance(p1, p4),
+                   distance(p2, p3), distance(p2, p4), distance(p3, p4)]
+        cnt = collections.Counter(dis)
+        return len(cnt) == 2 and 0 not in cnt
 
 
 if __name__ == '__main__':
