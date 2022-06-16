@@ -14,7 +14,24 @@ class Solution(object):
             m1=min(m1,value[0])
             m2=min(m2,value[1])
         return m1*m2
+#####python3
+    def maxCount(self, m: int, n: int, ops: list[list[int]]) -> int:
+        # if ops= [] the return would be float('inf')
+        r, c = float('inf'), float('inf')
+        for v in ops:
+            r = min(r, v[0])
+            c = min(c, v[1])
+        return r*c
 
+    def maxCount(self, m: int, n: int, ops: list[list[int]]) -> int:
+        # Runtime: 89 ms, faster than 66.41% of Python3 online submissions for Range Addition II.
+        # Memory Usage: 16 MB, less than 78.91% of Python3 online submissions for Range Addition II.
+        # time: o(len(ops)) space: o(1)
+        r, c = m, n
+        for v in ops:
+            r = min(r, v[0])
+            c = min(c, v[1])
+        return r*c
 
 if __name__ == '__main__':
     object = Solution()
