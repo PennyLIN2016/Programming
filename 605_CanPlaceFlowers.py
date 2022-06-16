@@ -17,6 +17,24 @@ class Solution(object):
             res+=1
             flowerbed[i]=1
         return res>=n
+    
+    ######python3 
+    def canPlaceFlowers(self, flowerbed: list[int], n: int) -> bool:
+        # Runtime: 281 ms, faster than 24.49% of Python3 online submissions for Can Place Flowers.
+        # Memory Usage: 14.3 MB, less than 74.08% of Python3 online submissions for Can Place Flowers.
+        # time: o(n) space:o(1)
+        tmp = [0] + flowerbed + [0]
+        zeroCnt = 0
+        for v in tmp:
+            if v == 0:
+                zeroCnt += 1
+            else:
+                n -= int((zeroCnt - 1)/2)
+                zeroCnt = 0
+            if n <= 0:
+                return True
+        print('zeroCnt: {} n: {}'.format(zeroCnt, n))
+        return int((zeroCnt - 1)/2) >= n
 
 
 if __name__ == '__main__':
