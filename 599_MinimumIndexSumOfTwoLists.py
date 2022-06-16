@@ -44,6 +44,26 @@ class Solution(object):
                     # res only store the cur small sum array
                     res.append(word)
         return res
+    
+    ##############python3
+        def findRestaurant(self, list1: list[str], list2: list[str]) -> list[str]:
+        # Runtime: 158 ms, faster than 93.32% of Python3 online submissions for Minimum Index Sum of Two Lists.
+        # Memory Usage: 14.3 MB, less than 98.90% of Python3 online submissions for Minimum Index Sum of Two Lists.
+        # time: o(n) space: o(n)
+        dictList1 = {}
+        for i, v in enumerate(list1):
+            dictList1[v] = i
+        cur = float('inf')
+        res = []
+        for j, value in enumerate(list2):
+            if value in dictList1:
+                if j + dictList1[value] < cur:
+                    cur = j + dictList1[value]
+                    res = [value]
+                elif j + dictList1[value] == cur:
+                    res.append(value)
+        return res
+    
 
 if __name__ == '__main__':
     object = Solution()
