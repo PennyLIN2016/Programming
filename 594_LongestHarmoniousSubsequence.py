@@ -33,6 +33,25 @@ class Solution(object):
             res=max(res,d[key])
         return res
 
+
+####python3 
+    def findLHS(self, nums: list[int]) -> int:
+        #Runtime: 710 ms, faster than 7.18% of Python3 online submissions for Longest Harmonious Subsequence.
+        #Memory Usage: 20.6 MB, less than 6.95% of Python3 online submissions for Longest Harmonious Subsequence.
+        # time: o(n) space: o(n)
+        import collections
+        posDict = collections.defaultdict(list)
+        for i, v in enumerate(nums):
+            posDict[v].append(i)
+        res = 0
+        # if for k, v in list(posDict.items()): will raise RuntimeError: dictionary changed size during iteration
+        for k, v in list(posDict.items()):
+            if posDict[k+1] == [] and posDict[k-1] == []:
+                continue
+            l1, l2, l3 = len(posDict[k+1]),  len(posDict[k]), len(posDict[k-1])
+            res = max(res, l1 + l2, l2 + l3)
+        return res
+
 if __name__ == '__main__':
     object = Solution()
     #n1= [[1,1,0],[1,1,0],[0,0,1]]
