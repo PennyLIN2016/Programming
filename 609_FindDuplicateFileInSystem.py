@@ -24,6 +24,35 @@ class Solution:
             if len(files[key])>1:
                 res.append(files[key])
         return res
+    
+    #####python3
+        def findDuplicate(self, paths: list[str]) -> list[list[str]]:
+        # Runtime: 173 ms, faster than 23.52% of Python3 online submissions for Find Duplicate File in System.
+        # Memory Usage: 23.7 MB, less than 84.56% of Python3 online submissions for Find Duplicate File in System.
+        # time: o(n: number of files)) space:o(n: number of files)
+        import re
+        dictPaths = {}
+        for v in paths:
+            tmp= v.split()
+            if len(tmp) == 1:
+                continue
+            for i in range(1, len(tmp)):
+                match = re.findall('([0-9A-Za-z.]+)', tmp[i])
+                print('match: {}'.format(match))
+                if not match or len(match) != 2:
+                    continue
+                name, content = match[0], match[1]
+                if content in dictPaths:
+                    dictPaths[content].append('{}/{}'.format(tmp[0], name))
+                else:
+                    dictPaths[content]= ['{}/{}'.format(tmp[0], name)]
+
+        print('dictPaths: {}'.format(dictPaths))
+        res = []
+        for k in dictPaths:
+            if len(dictPaths[k]) > 1:
+                res.append(dictPaths[k])
+        return res
 
 if __name__ == '__main__':
     object = Solution()
