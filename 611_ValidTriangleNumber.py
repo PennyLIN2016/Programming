@@ -40,6 +40,30 @@ class Solution(object):
                 else:
                     l+=1
         return res
+    
+    
+    ####python3
+        def triangleNumber(self, nums: list[int]) -> int:
+        # Runtime: 1223 ms, faster than 77.97% of Python3 online submissions for Valid Triangle Number.
+        # Memory Usage: 14.1 MB, less than 28.16% of Python3 online submissions for Valid Triangle Number.
+        # time: o(n**2) space:o(1)
+        # time: o(nlgn)
+        nums.sort()
+        res = 0
+        # nums[i] is the longest side. so just need to check a+b > nums[i]
+        # time: o(l**2)
+        for i in range(len(nums)-1, -1, -1):
+            short, mid = 0, i-1
+            while short < mid:
+                if nums[short] + nums[mid] > nums[i]:
+                    res += mid - short
+                    mid -= 1
+                else:
+                    short += 1
+        return res
+    
+    
+    
 
 if __name__ == '__main__':
     object = Solution()
