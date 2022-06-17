@@ -24,7 +24,19 @@ class Solution(object):
 
         return t1
 
+#########python3
+    def mergeTrees(self, root1: TreeNode, root2: TreeNode) -> TreeNode:
+        # Runtime: 93 ms, faster than 83.61% of Python3 online submissions for Merge Two Binary Trees.
+        # Memory Usage: 15.6 MB, less than 18.27% of Python3 online submissions for Merge Two Binary Trees.
+        # time:o(max(n1, n2)) space: o(max(n1, n2)) : recursion stack
+        if not root1: return root2
+        if not root2: return root1
 
+        root1.val += root2.val
+        root1.left = self.mergeTrees(root1.left, root2.left)
+        root1.right = self.mergeTrees(root1.right, root2.right)
+
+        return root1
 
 if __name__ == '__main__':
     object = Solution()
