@@ -33,6 +33,51 @@ class MyCircularQueue(object):
         """
         if self.len==0: return False
         if self.head==self.size-1: self.head=0
+            
+            
+ #### python3 
+class MyCircularQueue:
+# Runtime: 80 ms, faster than 76.61% of Python3 online submissions for Design Circular Queue.
+# Memory Usage: 14.7 MB, less than 21.93% of Python3 online submissions for Design Circular Queue.
+# time: o(1) space: o(k)
+    def __init__(self, k: int):
+        self._queue = [0] * k
+        self._size = k
+        self._length = 0
+        self._start = 0
+        self._end = -1
+
+    def enQueue(self, value: int) -> bool:
+        if self._length == self._size:
+            return False
+        self._end = self._end + 1 if self._end < self._size-1 else 0
+        self._queue[self._end] = value
+        self._length += 1
+        print(self._queue)
+        return True
+
+    def deQueue(self) -> bool:
+        if self._length == 0:
+            return False
+        self._start = self._start + 1 if self._start != self._size - 1 else  0
+        self._length -= 1
+        return True
+
+    def Front(self) -> int:
+        if self._length == 0:
+            return -1
+        return self._queue[self._start]
+
+    def Rear(self) -> int:
+        if self._length == 0:
+            return -1
+        return self._queue[self._end]
+
+    def isEmpty(self) -> bool:
+        return self._length == 0
+
+    def isFull(self) -> bool:
+        return self._length == self._size
         else: self.head+=1
         self.len-=1
         return True
