@@ -42,7 +42,32 @@ class Solution(object):
             n.right=right
         return res
 
-
+#####python3
+    def addOneRow(self, root: TreeNode, val: int, depth: int) -> TreeNode:
+        ### Runtime: 59 ms, faster than 85.84% of Python3 online submissions for Add One Row to Tree.
+        #Memory Usage: 16.6 MB, less than 92.18% of Python3 online submissions for Add One Row to Tree.
+        # bfs solution: time: O(2**depth) space: o(2* depth)
+        if depth == 1:
+            newN = TreeNode(val)
+            newN.left = root
+            return newN
+        stack = [root]
+        while depth > 2:
+            tmp = []
+            for node in stack:
+                if node.left: tmp.append(node.left)
+                if node.right: tmp.append(node.right)
+            depth -= 1
+            stack = tmp
+        for v in stack:
+            # notes: no matter if the v.left/right is null, the new node should replace the right/left
+            newN = TreeNode(val)
+            newN.left = v.left
+            v.left = newN
+            newN = TreeNode(val)
+            newN.right = v.right
+            v.right = newN
+        return root
 
 
 
