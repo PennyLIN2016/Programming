@@ -15,6 +15,18 @@ class Solution(object):
             print tmp
             if tmp**2==c-i**2: return True
         return False
+##### python3
+    def judgeSquareSum(self, c: int) -> bool:
+        # Runtime: 646 ms, faster than 24.30% of Python3 online submissions for Sum of Square Numbers.
+        # Memory Usage: 13.9 MB, less than 61.40% of Python3 online submissions for Sum of Square Numbers.
+        # math solution: time: o(lgc) space: o(1)
+        import math
+        i = 0
+        while i <= int(math.sqrt(c/2)):
+            if int(math.sqrt(c - i**2)) ** 2 == c - i**2:
+                return True
+            i += 1
+        return False
 
 
 
