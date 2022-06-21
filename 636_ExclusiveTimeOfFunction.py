@@ -28,6 +28,37 @@ class Solution(object):
                     # for start from the end of the current function
                     stack[-1][1]=t+1
         return res
+    
+    ## ###python3
+        def exclusiveTime(self, n: int, logs: list[str]) -> list[int]:
+        #Runtime: 90 ms, faster than 70.83% of Python3 online submissions for Exclusive Time of Functions.
+        #Memory Usage: 14.1 MB, less than 34.22% of Python3 online submissions for Exclusive Time of Functions.
+        # time: o(max(len(logs), n)) space: o(n)
+        funcTime = [[] for _ in range(n)]
+        stack = []
+        for s in logs:
+            sList = s.split(':')
+            funcId, event, timeS = int(sList[0]), sList[1], int(sList[2])
+            print('stack:{} funcTime:{}'.format(stack, funcTime))
+            print('funcId: {} event:{} timeS: {}'.format(funcId, event, timeS))
+            if event == 'start':
+                if stack != []:
+                    funcTime[stack[-1]][-1][1] = timeS-1
+                funcTime[funcId].append([timeS, 0])
+                stack.append(funcId)
+            else:
+                funcTime[stack[-1]][-1][1] = timeS
+                stack.pop()
+                if stack != []:
+                    funcTime[stack[-1]].append([timeS+1, 0])
+
+        print('funcTime: {}'.format(funcTime))
+        res = [0] * n
+        for i, v in enumerate(funcTime):
+            for t in v:
+                if t[0] <= t[1]:
+                    res[i] += t[1] - t[0] + 1
+        return res
 
 
 
