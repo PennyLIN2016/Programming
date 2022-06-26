@@ -54,6 +54,20 @@ class Solution(object):
             res += freqDict[f]
         return res
 
+   def topKFrequent(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: List[int]
+        """
+        # counter solution
+        # Runtime: 133 ms, faster than 44.71% of Python online submissions for Top K Frequent Elements.
+        # Memory Usage: 16.8 MB, less than 59.41% of Python online submissions for Top K Frequent Elements.
+        import collections
+        cnt = collections.Counter(nums)
+        # most_common: time: o(nlgk)
+        return [v[0] for v in cnt.most_common(k)]
+    
 if __name__ == '__main__':
     k = Solution()
     n1 = [1,1,1,2,2,3]
