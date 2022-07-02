@@ -33,6 +33,66 @@ class MyCircularDeque(object):
         self.size+=1
         return True
 
+    
+    #### python 3
+    import collections
+class MyCircularDeque:
+    # Runtime: 88 ms, faster than 70.36% of Python3 online submissions for Design Circular Deque.
+    # Memory Usage: 14.7 MB, less than 65.93% of Python3 online submissions for Design Circular Deque.
+    # time: o(1) space: o(1)
+    import collections
+
+    def __init__(self, k: int):
+        self._dq = collections.deque([])
+        self._size = k
+        self._len = 0
+
+
+    def insertFront(self, value: int) -> bool:
+        if self._len == self._size:
+            return False
+        self._dq.appendleft(value)
+        self._len += 1
+        return True
+
+    def insertLast(self, value: int) -> bool:
+        if self._len == self._size:
+            return False
+        self._dq.append(value)
+        self._len += 1
+        return True
+
+    def deleteFront(self) -> bool:
+        if self._len == 0:
+            return False
+        self._dq.popleft()
+        self._len -= 1
+        return True
+
+    def deleteLast(self) -> bool:
+        if self._len == 0:
+            return False
+        self._dq.pop()
+        self._len -= 1
+        return True
+
+    def getFront(self) -> int:
+        if self._dq:
+            return self._dq[0]
+        else:
+            return -1
+
+    def getRear(self) -> int:
+        if self._dq:
+            return self._dq[-1]
+        else:
+            return -1
+
+    def isEmpty(self) -> bool:
+        return self._len == 0
+
+    def isFull(self) -> bool:
+        return self._len == self._size
 
     def deleteFront(self):
         """
