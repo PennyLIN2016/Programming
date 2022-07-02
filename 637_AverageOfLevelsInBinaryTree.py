@@ -30,8 +30,27 @@ class Solution(object):
             print (res)
         return res
 
+### python 3
 
+    def averageOfLevels(self, root: TreeNode) -> list[float]:
+        # Runtime: 94 ms, faster than 21.40% of Python3 online submissions for Average of Levels in Binary Tree.
+        # Memory Usage: 16.5 MB, less than 47.63% of Python3 online submissions for Average of Levels in Binary Tree.
+        # time: o(n: nodes) space: o(n)
+        if not root: return []
+        res = []
+        nodes = [root]
 
+        while nodes:
+            sumVal = 0
+            tmp = []
+            for v in nodes:
+                sumVal += v.val
+                if v.left: tmp.append(v.left)
+                if v.right: tmp.append(v.right)
+            res.append(round(sumVal / len(nodes), 5))
+            nodes = tmp
+
+        return res
 
 
 
