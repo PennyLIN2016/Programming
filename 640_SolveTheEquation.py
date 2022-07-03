@@ -50,7 +50,41 @@ class Solution(object):
         print('go back to main()')
         return a,b
 
+#####python 3
+    def solveEquation(self, equation: str) -> str:
+        # Runtime: 35 ms, faster than 79.36% of Python3 online submissions for Solve the Equation.
+        # Memory Usage: 13.9 MB, less than 87.16% of Python3 online submissions for Solve the Equation.
+        # time: o(n) : length of the str space:o(1)
+        def getSum(inputStr):
+            import re
+            match = re.findall('([-+]?[0-9x]+)', inputStr)
+            if not match:
+                return 0
+            s1, s2 = 0, 0
+            for m in match:
+                flag = 1
+                if m[0] == '+':
+                    m = m[1:]
+                if m[0] == '-':
+                    m = m[1:]
+                    flag = -1
+                if m[-1] == 'x':
+                    if len(m) == 1:
+                        s2 += 1 * flag
+                    else:
+                        s2 += int(m[:-1]) * flag
+                else:
+                    s1 += int(m) * flag
+            return s1, s2
 
+        left, right = equation.split('=')[0], equation.split('=')[1]
+        left1, left2 = getSum(left)
+        right1, right2 = getSum(right)
+        n, x = left1-right1, right2 - left2
+        if x == 0:
+            return 'Infinite solutions' if n == 0 else 'No solution'
+        else:
+            return 'x={}'.format(n//x) if n % x == 0 else 'No solution'
 
 if __name__ == '__main__':
     object = Solution()
